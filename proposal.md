@@ -7,7 +7,12 @@ Group Repo: https://github.com/fridayatgalvin/362-Project2
 
 Toby's Repo: https://github.com/aofayemi/362-Project2
 
+Bryan's Repo: https://github.com/TheGreatestHacker/362-Project2
 
 Communication app: Hangouts.
 
-An online ticket platform based off SeatGeek for buying tickets for concerts, sport and other entertainment events.
+Website Name: MasterTickets
+
+Website Aim:
+An online ticket platform based off SeatGeek for buying tickets for concerts,
+sport and other entertainment events.
