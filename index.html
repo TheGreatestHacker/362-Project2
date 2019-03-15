@@ -36,13 +36,13 @@
 
   <section id="Payment-method">
     <h2>Payment Information</h2>
-    <form id="cc" action"#null" method="get">
+    <form id="cc" action="#null" method="get">
       <label for="credit-num">Credit Card Number</label>
       <input type="number" name="credit-num" id="credit-num" required/>
       <label for="cvv">CVV</label>
       <input type="number" name="cvv" id="cvv" required/>
 
-    <label for="card-month">Exp. Month</label>
+    <label for="expmonth-container">Exp. Month</label>
     <select id="expmonth-container">
       <option value="">MM</option>
       <option value="01">01-Jan</option>
@@ -60,7 +60,7 @@
     </select>
 
     <label for="card-year">Exp. Year</label>
-    <select id="expyear-container">
+    <select id="card-year">
       <option value="">YY</option>
       <option value="2019">2019</option>
       <option value="2020">2020</option>
@@ -87,7 +87,7 @@
       <input type="text" name="l-name" id="l-name" required/>
     </form>
 
-    <label for="Country">Country</label>
+    <label for="country-container">Country</label>
     <select id="country-container">
       <option value="">Country</option>
       <option value="Canada">Canada</option>
@@ -98,22 +98,22 @@
     <form id="address-container" action="#null" method="get">
       <label for="address">Street Address</label>
       <input type="text" name="address" id="address" required/>
-      <input type="text" name="address" id="address" placeholder="Apt, suite, (optional)" required/>
+      <input type="text" name="address" id="suite" placeholder="Apt, suite, (optional)" required/>
     </form>
 
     <form id="city-container" action="#null" method="get">
-      <label for="address">City</label>
+      <label for="city">City</label>
       <input type="text" name="city" id="city" required/>
-      <label for="address">State</label>
+      <label for="state">State</label>
       <input type="text" name="state" id="state" required/>
       <label for="zipcode">Zip Code</label>
       <input type="number" name="zip" id="zipcode" required/>
     </form>
   </section>
 
-  <section id="submit-container">
+  <nav id="submit-container">
     <input type="submit" name="submit" id="submit" value="Submit" />
-  </section>
+  </nav>
 
 
 
