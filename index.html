@@ -32,7 +32,7 @@
     </section>
   </form>
 
-  <section id="Billing">
+  <section id="Payment-method">
     <form id="cc" action"#null" method="get">
       <label for="credit-num">Credit Card Number</label>
       <input type="number" name="credit-num" id="credit-num" required/>
@@ -73,6 +73,38 @@
       <option value="2030">2030</option>
     </select>
   </form>
+  </section>
+
+  <section id="Billing-container">
+    <form id="f-name" action="#null" method="get">
+      <label for="contact">First Name</label>
+      <input type="text" name="f-name" id="f-name" required/>
+      <label for="l-name">Last Name</label>
+      <input type="text" name="l-name" id="l-name" required/>
+    </form>
+
+    <label for="Country">Country</label>
+    <select id="Country-container">
+      <option value="">Country</option>
+      <option value="Canada">Canada</option>
+      <option value="Mexico">Mexico</option>
+      <option value="United States of America">United States of America</option>
+    </select>
+
+    <form id="address-container" action="#null" method="get">
+      <label for="address">Street Address</label>
+      <input type="text" name="address" id="address" required/>
+      <input type="text" name="address" id="address" placeholder="Apt, suite, (optional)" required/>
+    </form>
+
+    <form id="city-container" action="#null" method="get">
+      <label for="address">City</label>
+      <input type="text" name="city" id="city" required/>
+      <label for="address">State</label>
+      <input type="text" name="state" id="state" required/>
+      <label for="zip">Zip Code</label>
+      <input type="number" name="zip" id="zipcode" required/>
+    </form>
   </section>
 
 
