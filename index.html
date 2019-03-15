@@ -14,7 +14,7 @@
     <section id="quantity">
       <label for="ticket-select">Quantity</label>
       <select>
-        <option value="">--Please choose an option--</option>
+        <option value=" ">--Please choose an option--</option>
         <option value="1">1</option>
         <option value="2">2</option>
         <option value="3">3</option>
@@ -28,9 +28,9 @@
         <label for="contact">Email:</label>
         <input type="text" name="contact" id="contact" required/>
         <label for="contact">Phone Number</label>
-        <input type="text" name="contact" id="contact" required/>
+        <input type="text" name="contact" id="contact-text" required/>
+      </form>
     </section>
-  </form>
 
   <section id="Payment-method">
     <form id="cc" action"#null" method="get">
@@ -105,6 +105,10 @@
       <label for="zip">Zip Code</label>
       <input type="number" name="zip" id="zipcode" required/>
     </form>
+  </section>
+
+  <section id="submit-container">
+    <input type="submit" name="submit" id="submit" value="Submit" />
   </section>
 
 
