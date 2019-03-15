@@ -4,6 +4,7 @@
   <title>Ticket Purchase</title>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1.0,shrink-to-fit=no" />
+  <link rel="stylesheet" href="screen.css" />
 </head>
 <body>
   <header id="header">
@@ -78,13 +79,13 @@
   <section id="Billing-container">
     <form id="f-name" action="#null" method="get">
       <label for="contact">First Name</label>
-      <input type="text" name="f-name" id="f-name" required/>
+      <input type="text" name="f-name" id="first-name" required/>
       <label for="l-name">Last Name</label>
       <input type="text" name="l-name" id="l-name" required/>
     </form>
 
     <label for="Country">Country</label>
-    <select id="Country-container">
+    <select id="country-container">
       <option value="">Country</option>
       <option value="Canada">Canada</option>
       <option value="Mexico">Mexico</option>
@@ -102,7 +103,7 @@
       <input type="text" name="city" id="city" required/>
       <label for="address">State</label>
       <input type="text" name="state" id="state" required/>
-      <label for="zip">Zip Code</label>
+      <label for="zipcode">Zip Code</label>
       <input type="number" name="zip" id="zipcode" required/>
     </form>
   </section>
