@@ -26,7 +26,9 @@ h2 {
 
 section {
   border-style: solid;
-  border-width: medium;
+  border-width: 0.1666666em; /* 3/18= 0.1666666em */
+  border-radius: 0.8333333em; /* 15/18= 0.8333333em */
+  border-color:  #acacac;
   margin: 18px 10vw 18px 10vw; /*top left bottom right*/
-  padding: 10px;
+  padding: 0.55555555em; /*10/18= 0.55555555em*/
 }
