@@ -32,3 +32,14 @@ section {
   margin: 18px 10vw 18px 10vw; /*top left bottom right*/
   padding: 0.55555555em; /*10/18= 0.55555555em*/
 }
+
+#submit-container {
+  width: 100px;
+  margin: 0 auto;
+}
+
+#header{
+  width: 400px;
+  margin: 0 auto;
+  text-align: center;
+}

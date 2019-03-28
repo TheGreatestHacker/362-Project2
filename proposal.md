@@ -15,4 +15,4 @@ Website Name: MasterTickets
 
 Website Aim:
 An online ticket platform based off SeatGeek for buying tickets for concerts,
-sport and other entertainment events.
+sport events.
