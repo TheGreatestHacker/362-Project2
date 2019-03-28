@@ -26,3 +26,19 @@
   function lte(value,condition) {
     return value <= condition;
   }
+
+
+    // Data cleanup functions
+    function clean_nonnumbers(value) {
+      // returns value with all non-digits removed
+      return value.replace(/\D/g,'');
+    }
+    function clean_whitespace(value) {
+      // returns value with all whitespace characters removed
+      return value.replace(/\s/g, '');
+    }
+
+    // Phone-specific santizier functions
+    function strip_us_country_code(value) {
+      return value.replace(/^1/,'');
+    }
