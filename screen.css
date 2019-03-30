@@ -9,7 +9,7 @@ a,abbr,acronym,address,applet,article,aside,audio,b,big,blockquote,body,canvas,c
 /* Begin site styles below */
 
 html {
-  font-family: 'Merriweather', sans-serif;
+  font-family: "Merriweather", sans-serif;
   font-size: 1.125em; /*18/16= 1.125em*/
   line-height: 1.222222em; /*22/18= 1.222222em*/
 }
@@ -28,18 +28,22 @@ section {
   border-style: solid;
   border-width: 0.1666666em; /* 3/18= 0.1666666em */
   border-radius: 0.8333333em; /* 15/18= 0.8333333em */
-  border-color:  #acacac;
-  margin: 18px 10vw 18px 10vw; /*top left bottom right*/
+  border-color: #acacac;
+  margin: 1em 10vw 1em 10vw; /*top left bottom right*/
   padding: 0.55555555em; /*10/18= 0.55555555em*/
 }
 
+input[type="text"] {
+  width: 13.888888em; /* 250/18=13.888888em */
+}
+
 #submit-container {
-  width: 100px;
+  width: 5.5555555em; /* 100/18=5.555555em*/
   margin: 0 auto;
 }
 
-#header{
-  width: 400px;
+#header {
+  width: 22.222222em; /* 400/18= 22.222222em*/
   margin: 0 auto;
   text-align: center;
 }
