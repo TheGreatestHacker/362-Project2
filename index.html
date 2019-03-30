@@ -28,7 +28,7 @@
       <h2>Contact Info</h2>
       <form id="email" action="#null" method="get">
         <label for="contact">Email:</label>
-        <input type="text" name="contact" id="contact" required/>
+        <input type="email" name="contact" id="contact" required/>
         <label for="contact">Phone Number</label>
         <input type="text" name="contact" id="contact-text" required/>
       </form>
@@ -40,7 +40,7 @@
       <label for="credit-num">Credit Card Number</label>
       <input type="number" name="credit-num" id="credit-num" required/>
       <label for="cvv">CVV</label>
-      <input type="number" name="cvv" id="cvv" required/>
+      <input type="number" name="cvv" maxlength="4" id="cvv" required/>
 
     <label for="expmonth-container">Exp. Month</label>
     <select id="expmonth-container">
