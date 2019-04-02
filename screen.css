@@ -30,11 +30,15 @@ section {
   border-radius: 0.8333333em; /* 15/18= 0.8333333em */
   border-color: #acacac;
   margin: 1em 10vw 1em 10vw; /*top left bottom right*/
-  padding: 0.55555555em; /*10/18= 0.55555555em*/
+  padding: 0.5555555em; /*10/18= 0.55555555em*/
 }
 
-input[type="text"] {
+input[type="text"], [type="email"] {
   width: 13.888888em; /* 250/18=13.888888em */
+}
+
+header {
+  background-color: #abc8c7;
 }
 
 #submit-container {
@@ -42,8 +46,24 @@ input[type="text"] {
   margin: 0 auto;
 }
 
-#header {
-  width: 22.222222em; /* 400/18= 22.222222em*/
+#header-content {
+  width: 19.444444em; /* 350/18= 19.444444em*/
   margin: 0 auto;
   text-align: center;
+}
+
+label {
+  display: inline-block;
+}
+
+input {
+  margin-bottom: 0.55555em;
+}
+
+#credit-num {
+  width: 13.888888em; /* 250/18= 13.888888em*/
+}
+
+#cvv {
+  width: 11.111111em; /* 200/18= 11.111111em*/
 }
