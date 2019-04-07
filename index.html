@@ -8,8 +8,16 @@
 </head>
 <body>
   <header id="header">
-    <h1>Master Ticket</h1>
+    <h1 id="header-content">Master Ticket</h1>
   </header>
+
+  <nav>
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a class="active">Check-out</a></li>
+      <li><a href="#confirmation">Confirmation</a></li>
+    </ul>
+  </nav>
 
   <main id="content">
     <section id="quantity">
@@ -27,9 +35,9 @@
     <section id="contact-info">
       <h2>Contact Info</h2>
       <form id="email" action="#null" method="get">
-        <label for="contact">Email:</label>
+        <label for="contact">Email Adress:</label>
         <input type="email" name="contact" id="contact" required/>
-        <label for="contact">Phone Number</label>
+        <label for="contact">Phone Number:</label>
         <input type="text" name="contact" id="contact-text" required/>
       </form>
     </section>
