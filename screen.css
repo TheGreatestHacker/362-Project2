@@ -47,7 +47,7 @@ header {
 }
 
 #header-content {
-  width: 19.444444em; /* 350/18= 19.444444em*/
+  width: 7em; /* 350/18= 19.444444em*/
   margin: 0 auto;
   text-align: center;
 }
@@ -67,3 +67,31 @@ input {
 #cvv {
   width: 11.111111em; /* 200/18= 11.111111em*/
 }
+
+/* Navigation Bar CSS*/
+ul {
+  display: flex;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+
+li {
+  float: left;
+  flex-grow: 1;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover {
+  background-color: #111;
+}
+/**/
