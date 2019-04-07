@@ -96,4 +96,24 @@ li a {
 li a:hover {
   background-color: #111;
 }
-/**/
+/*-----------End Navigation Styling--------------*/
+
+
+
+/*-----------------Home Page Styling---------------*/
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-gap: 1.5rem;
+  margin: 1em 5vw 1em 5vw; /*top left bottom right*/
+}
+.grid > section {
+  background: #EDE7F6;
+  padding: 2rem;
+  border-radius: 1rem;
+}
+
+#upcoming-events{
+  text-align: center;
+}
+/*------------------End Home Page Styling-----------------*/
