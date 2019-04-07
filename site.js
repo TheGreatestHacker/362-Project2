@@ -80,4 +80,83 @@
     return validate(zip.length, eq, 5);
   }
 
-}()); // End of IIFE
+  document.addEventListener('DOMContentLoaded',function(){
+      // Select the necessary elements from the DOM
+  var order = {};
+  var location = {};
+  order.form = document.querySelector('#payment-method');
+  order.submit_area = order.form.querySelector('#submit-container');
+  order.submit_button = order.form.querySelector('#submit');
+  order.eh_submit_button = document.createElement('a');
+  order.eh_submit_button.href = '#null';
+  order.eh_submit_button.id = 'eh-submit';
+  order.eh_submit_button.setAttribute('role','button');
+  order.eh_submit_button.innerText = "Place Enhanced Order";
+/*
+  // Replace the submit button with `<a role="button">`
+   order.submit_button.classList.add('hidden');
+   order.submit_area.appendChild(order.eh_submit_button);
+*/
+  var location = {
+  zip: order.form.querySelector('#zip'),
+  city: order.form.querySelector('#city'),
+  state: order.form.querySelector('#state')
+};
+
+if ('fetch' in window) {
+
+      console.log("yay, this browser suppports the Fetch API");
+
+      // TODO: Get rid of this hacky variable to track requests
+      var zip;
+      location.zip.addEventListener('keyup', function(e){
+        // Validate and ensure no duplicate requests
+        if(validate_us_zip(location.zip.value) && zip !== location.zip.value) {
+          //fetch('http://localhost:8080/60616.js')
+          zip = location.zip.value;
+          fetch('http://api.zippopotam.us/us/' + location.zip.value)
+            .then(function(response){
+              if (response.ok) {
+                return response.json();
+              }
+              throw Error('No data for ZIP code ' + location.zip.value);
+            })
+            .then(function(parsed_json) {
+                location.city.value = parsed_json.places[0]["place name"];
+                location.state.value = parsed_json.places[0]["state"];
+            })
+            .catch(function(error) {
+              console.log(error);
+              location.city.value = '';
+              location.state.value = '';
+            });
+        }
+      });
+
+    }
+
+    // Listen for click events on new submit button, and submit
+    // the form when it's clicked
+    order.eh_submit_button.addEventListener('click', function(event) {
+      // Submit the form
+      event.preventDefault();
+      order.submit_button.click();
+    });
+
+    // Replace the select element with a collection of size buttons
+
+    // Listen for clicks on the size buttons, and set the corresponding
+    // element from the hidden select element
+
+    // Listen for the form's submit event, intercept it and
+    // display an order confirmation where the form once was
+    order.form.addEventListener('submit',function(e){
+      e.preventDefault();
+      console.log('Caught the submit event on JS refactor');
+    });
+
+  // End of DOMContentLoaded
+  });
+
+// End of IIFE
+}());
