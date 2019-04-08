@@ -109,9 +109,25 @@ li a:hover {
 }
 .grid > section {
   background: #EDE7F6;
-  padding: 2rem;
+  padding: 6em;
   border-radius: 1rem;
 }
+
+#event1 {
+  background-image: url(/img/barcelonaStadium.jpg);
+  padding: 6em;
+}
+
+#event2 {
+  background-image: url(/img/bearsStadium.png);
+  padding: 6em;
+}
+
+#event3 {
+  background-image: url(/img/bullsStadium.jpg);
+  padding: 6em;
+}
+
 
 #upcoming-events{
   text-align: center;
