@@ -128,6 +128,20 @@ li a:hover {
   padding: 6em;
 }
 
+#event4 {
+  background-image: url(/img/blackhawkStadium.jpg);
+  padding: 6em;
+}
+
+#event5 {
+  background-image: url(/img/whitesoxStadium.jpg);
+  padding: 6em;
+}
+
+#event6 {
+  background-image: url(/img/cubStadium.jpg);
+  padding: 6em;
+}
 
 #upcoming-events{
   text-align: center;
