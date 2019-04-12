@@ -102,7 +102,7 @@
   city: order.form.querySelector('#city'),
   state: order.form.querySelector('#state')
 };
-
+git
 if ('fetch' in window) {
 
       console.log("yay, this browser suppports the Fetch API");
@@ -119,7 +119,7 @@ if ('fetch' in window) {
               if (response.ok) {
                 return response.json();
               }
-              throw Error('No data for ZIP code ' + location.zip.value);
+              throw Error('No data for ZIP code ' + location.zip.value)
             })
             .then(function(parsed_json) {
                 location.city.value = parsed_json.places[0]["place name"];
@@ -134,6 +134,8 @@ if ('fetch' in window) {
       });
 
     }
+
+
 
     // Listen for click events on new submit button, and submit
     // the form when it's clicked
