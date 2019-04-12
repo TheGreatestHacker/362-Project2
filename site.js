@@ -80,85 +80,72 @@
     return validate(zip.length, eq, 5);
   }
 
-  document.addEventListener('DOMContentLoaded',function(){
-      // Select the necessary elements from the DOM
-  var order = {};
-  var location = {};
-  order.form = document.querySelector('#payment-method');
-  order.submit_area = order.form.querySelector('#submit-container');
-  order.submit_button = order.form.querySelector('#submit');
-  order.eh_submit_button = document.createElement('a');
-  order.eh_submit_button.href = '#null';
-  order.eh_submit_button.id = 'eh-submit';
-  order.eh_submit_button.setAttribute('role','button');
-  order.eh_submit_button.innerText = "Place Enhanced Order";
-/*
-  // Replace the submit button with `<a role="button">`
-   order.submit_button.classList.add('hidden');
-   order.submit_area.appendChild(order.eh_submit_button);
-*/
+
+document.addEventListener('DOMContentLoaded' ,function() {
+  console.log("DOM is loaded");
   var location = {
-  zip: order.form.querySelector('#zip'),
-  city: order.form.querySelector('#city'),
-  state: order.form.querySelector('#state')
+    zip: document.querySelector('#zip'),
+    state: document.querySelector('#state'),
+    city: document.querySelector('#city')
+  }
+
+function rmnumber(value) {
+    return value.replace(/\D/g,'');
+}
+
+function equals(value,condition) {
+    return value === condition;
+  }
+
+function validate(value,check,condition) {
+  if (equals(typeof(check.test),'function')) {
+    return check.test(value);
+  }
+  else if (equals(typeof(check),'function'))
+  {
+    return check(value,condition);
+  }
+  else
+  {
+    return false;
+  }
+}
+function validate_zip(value){
+  var zip = rmnumber(value);
+  return validate(zip.length,equals,5);
 };
-git
-if ('fetch' in window) {
 
-      console.log("yay, this browser suppports the Fetch API");
+if('fetch' in window) {
+  console.log("yay, this browser suppports the Fetch API");
+  location.city.classList.add('fade-out');
+  location.city.classList.add('fade-out');
 
-      // TODO: Get rid of this hacky variable to track requests
-      var zip;
-      location.zip.addEventListener('keyup', function(e){
-        // Validate and ensure no duplicate requests
-        if(validate_us_zip(location.zip.value) && zip !== location.zip.value) {
-          //fetch('http://localhost:8080/60616.js')
-          zip = location.zip.value;
-          fetch('http://api.zippopotam.us/us/' + location.zip.value)
-            .then(function(response){
-              if (response.ok) {
-                return response.json();
-              }
-              throw Error('No data for ZIP code ' + location.zip.value)
-            })
-            .then(function(parsed_json) {
-                location.city.value = parsed_json.places[0]["place name"];
-                location.state.value = parsed_json.places[0]["state"];
-            })
-            .catch(function(error) {
-              console.log(error);
-              location.city.value = '';
-              location.state.value = '';
-            });
+  var zip;
+  location.zip.addEventListener('keyup', function(e) {
+    if (validate_zip(location.zip.value) && zip !== location.zip.value){
+      zip = location.zip.value;
+      fetch('http://api.zippopotam.us/us/' + location.zip.value)
+      .then(function(response) {
+        if (response.ok){
+          return response.json();
         }
-      });
-
-    }
-
-
-
-    // Listen for click events on new submit button, and submit
-    // the form when it's clicked
-    order.eh_submit_button.addEventListener('click', function(event) {
-      // Submit the form
-      event.preventDefault();
-      order.submit_button.click();
-    });
-
-    // Replace the select element with a collection of size buttons
-
-    // Listen for clicks on the size buttons, and set the corresponding
-    // element from the hidden select element
-
-    // Listen for the form's submit event, intercept it and
-    // display an order confirmation where the form once was
-    order.form.addEventListener('submit',function(e){
-      e.preventDefault();
-      console.log('Caught the submit event on JS refactor');
-    });
-
-  // End of DOMContentLoaded
+        throw Error('No data for ZIP code' + location.zip.value)
+      })
+        .then(function(fetchv) {
+          location.city.value = fetchv.places[0]["place name"];
+          location.state.value = fetchv.places[0]["state"];
+          location.city.classList.add('fade-in');
+          location.state.classList.add('fade-in');
+        })
+        .catch(function(error) {
+          console.log(error);
+          location.city.value = '';
+          location.state.value = '';
+          location.city.classList.add('fade-in');
+          location.state.classList.add('fade-in');
+        });
+      }
   });
-
-// End of IIFE
+}
+});
 }());
