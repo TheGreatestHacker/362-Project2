@@ -71,7 +71,42 @@
   // Email validity function
   function validate_email(value) {
     var email = clean_whitespace(value);
-    return validate(email, /^[^@\s]+@[^@\s]+$/g);
+    return validate(contact, /^[^@\s]+@[^@\s]+$/g);
+  }
+
+  // Credit card number validity function
+  function validate_credit_num(creditnum) {
+  // Valid CCN is a 16-digit string with no whitespace
+    return validate(remove_all_whitespace(credit_num), /^[0-9]{16}$/g);
+  }
+
+  // CVV validity function
+  function validate_ccv(ccv) {
+  // Valid security code is a 3 or 4 digit string with all whitespace removed
+    return validate(remove_all_whitespace(ccv), /^[0-9]{3}[0-9]?$/g);
+  }
+  // Exp month validity function
+  function validate_expr_month(expmonth_container) {
+  // Valid mo is a 2-digit number between 1-12
+    if (expmonth_container >= 1 && expmonth_container <= 12) {
+      return true;
+    }
+    return false;
+  }
+
+  // year validity function
+  function validate_expr_year(card_year) {
+    // Valid year is a 4-digit number after [current year]
+    if (card-year >= 2019 && card_year <= 9999) {
+      return true;
+    }
+    return false;
+  }
+
+  // name validity function
+  function validate_name(f_name, l_name) {
+    // Valid name is a non-empty string after removing excess whitespace
+    return validate(remove_excess_whitespace(f_name, l_name), /.+/g);
   }
 
   // ZIP code validity function
@@ -83,11 +118,20 @@
 
 document.addEventListener('DOMContentLoaded' ,function() {
   console.log("DOM is loaded");
+
+  // select the necessary elements from the DOM
+  var signup_input = document.querySelector('#submit-container');
+  var contact_input = document.querySelector('#contact');
+  var contact_input = document.querySelector('#contact-text');
+  var signup_submit=document.querySelector('#submit');
+
+  signup_submit.removeAttribute('disabled');
+
   var location = {
     zip: document.querySelector('#zip'),
     state: document.querySelector('#state'),
     city: document.querySelector('#city')
-  }
+  };
 
 function rmnumber(value) {
     return value.replace(/\D/g,'');
@@ -113,7 +157,7 @@ function validate(value,check,condition) {
 function validate_zip(value){
   var zip = rmnumber(value);
   return validate(zip.length,equals,5);
-};
+}
 
 if('fetch' in window) {
   console.log("yay, this browser suppports the Fetch API");
@@ -129,7 +173,7 @@ if('fetch' in window) {
         if (response.ok){
           return response.json();
         }
-        throw Error('No data for ZIP code' + location.zip.value)
+        throw Error('No data for ZIP code' + location.zip.value);
       })
         .then(function(fetchv) {
           location.city.value = fetchv.places[0]["place name"];
@@ -147,5 +191,7 @@ if('fetch' in window) {
       }
   });
 }
+ // End of DOMContentLoaded
 });
+// End of IIFE
 }());
