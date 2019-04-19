@@ -100,47 +100,30 @@ li a:hover {
 
 
 
-/*-----------------Home Page Styling---------------*/
-.grid {
+/*-----------------Home Page Styling (index)---------------*/
+.grid-area {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   grid-gap: 1.5rem;
   margin: 1em 5vw 1em 5vw; /*top left bottom right*/
 }
-.grid > section {
+.grid-area > .eventContainer {
   background: #EDE7F6;
-  padding: 6em;
   border-radius: 1rem;
 }
 
+/*
 #event1 {
   background-image: url(/img/barcelonaStadium.jpg);
   padding: 6em;
 }
-
-#event2 {
-  background-image: url(/img/bearsStadium.png);
-  padding: 6em;
-}
-
-#event3 {
-  background-image: url(/img/bullsStadium.jpg);
-  padding: 6em;
-}
-
-#event4 {
-  background-image: url(/img/blackhawkStadium.jpg);
-  padding: 6em;
-}
-
-#event5 {
-  background-image: url(/img/whitesoxStadium.jpg);
-  padding: 6em;
-}
-
-#event6 {
-  background-image: url(/img/cubStadium.jpg);
-  padding: 6em;
+*/
+.event {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  border-radius: 1rem;
+  object-position: center;
 }
 
 #upcoming-events{
