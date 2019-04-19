@@ -18,7 +18,7 @@
       <li><a href="confirmation.html">Confirmation</a></li>
     </ul>
   </nav>
-
+  <form id="payment" action="#null" method="get">
   <main id="checkout-content">
     <section id="quantity">
       <h2>Quantity</h2>
@@ -34,33 +34,30 @@
 
     <section id="contact-info">
       <h2>Contact Info</h2>
-      <form id="email" action="#null" method="get">
-        <section>
-          <label for="contact">Email Adress:</label>
-          <input type="email" name="contact" id="contact" required/>
-        </section>
-        <section>
-          <label for="contact">Phone Number:</label>
-          <input type="text" name="contact" id="contact-text" required/>
-        </section>
-      </form>
+        <fieldset>
+          <label for="email">Email Adress:</label>
+          <input type="email" name="email" id="email" required/>
+        </fieldset>
+        <fieldset>
+          <label for="phonenumber">Phone Number:</label>
+          <input type="text" name="phonenumber" id="phonenumber" required/>
+        </fieldset>
     </section>
 
   <section id="payment-method">
     <h2>Payment Information</h2>
-    <form id="cc" action="#null" method="get">
-      <section>
-        <label for="credit-num">Credit Card Number</label>
-        <input type="number" name="credit-num" id="credit-num" required/>
-      </section>
-      <section>
+      <fieldset>
+        <label for="ccn">Credit Card Number</label>
+        <input type="text" maxlength="16" name="ccn" id="ccn" required/>
+      </fieldset>
+      <fieldset>
         <label for="cvv">CVV</label>
-        <input type="number" name="cvv" maxlength="4" id="cvv" required/>
-      </section>
+        <input type="text" name="cvv" maxlength="3" id="cvv" required/>
+      </fieldset>
 
-    <section>
-      <label for="expmonth-container">Exp. Month</label>
-      <select id="expmonth-container">
+    <fieldset>
+      <label for="expmonthcontainer">Exp. Month</label>
+      <select id="expmonthcontainer" required>
         <option value="">MM</option>
         <option value="01">01-Jan</option>
         <option value="2">02-Feb</option>
@@ -75,11 +72,11 @@
         <option value="11">11-Nov</option>
         <option value="12">12-Dec</option>
       </select>
-    </section>
+    </fieldset>
 
-    <section>
-      <label for="card-year">Exp. Year</label>
-      <select id="card-year">
+    <fieldset>
+      <label for="cardyear">Exp. Year</label>
+      <select id="cardyear" required>
         <option value="">YY</option>
         <option value="2019">2019</option>
         <option value="2020">2020</option>
@@ -94,22 +91,19 @@
         <option value="2029">2029</option>
         <option value="2030">2030</option>
       </select>
-    </section>
-  </form>
+    </fieldset>
   </section>
 
   <section id="billing-container">
     <h2>Billing Information</h2>
-    <form action="#null" method="get">
-      <section>
-        <label for="f-name">First Name</label>
-        <input type="text" name="f-name" id="f-name" required/>
-      </section>
-      <section>
-        <label for="l-name">Last Name</label>
-        <input type="text" name="l-name" id="l-name" required/>
-      </section>
-    </form>
+      <fieldset>
+        <label for="fname">First Name</label>
+        <input type="text" name="fname" id="fname" required/>
+      </fieldset>
+      <fieldset>
+        <label for="lname">Last Name</label>
+        <input type="text" name="lname" id="lname" required/>
+      </fieldset>
 
     <label for="country-container">Country</label>
     <select id="country-container">
@@ -119,26 +113,22 @@
       <option value="United States of America">United States of America</option>
     </select>
 
-    <form id="address-container" action="#null" method="get">
       <label for="address">Street Address</label>
       <input type="text" name="address" id="address" required/>
       <input type="text" name="address" id="suite" placeholder="Apt, suite, (optional)" required/>
-    </form>
 
-    <form id="city-container" action="#null" method="get">
-      <section>
+      <fieldset>
         <label for="zip">Zip Code</label>
-        <input type="number" name="zip" id="zip" required/>
-      </section>
-      <section>
+        <input type="text" name="zip" id="zip" maxlength="5"  required/>
+      </fieldset>
+      <fieldset>
         <label for="city">City</label>
         <input type="text" name="city" id="city" required/>
-      </section>
-      <section>
+      </fieldset>
+      <fieldset>
         <label for="state">State</label>
         <input type="text" name="state" id="state" required/>
-      </section>
-    </form>
+      </fieldset>
   </section>
 
   <nav id="submit-container">
@@ -146,7 +136,7 @@
   </nav>
 
   </main>
-
+</form>
   <aside class="sidebar">
     <section class="purchase-summary">
     <h2>Order Summary</h2>

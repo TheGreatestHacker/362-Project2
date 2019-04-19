@@ -75,9 +75,9 @@
   }
 
   // Credit card number validity function
-  function validate_credit_num(creditnum) {
+  function validate_ccn(ccn) {
   // Valid CCN is a 16-digit string with no whitespace
-    return validate(remove_all_whitespace(credit_num), /^[0-9]{16}$/g);
+    return validate(remove_all_whitespace(ccn), /^[0-9]{16}$/g);
   }
 
   // CVV validity function
@@ -97,7 +97,7 @@
   // year validity function
   function validate_expr_year(card_year) {
     // Valid year is a 4-digit number after [current year]
-    if (card-year >= 2019 && card_year <= 9999) {
+    if (card_year >= 2019 && card_year <= 9999) {
       return true;
     }
     return false;
@@ -122,7 +122,7 @@ document.addEventListener('DOMContentLoaded' ,function() {
   // select the necessary elements from the DOM
   var signup_input = document.querySelector('#submit-container');
   var contact_input = document.querySelector('#contact');
-  var contact_input = document.querySelector('#contact-text');
+  var phone_input = document.querySelector('#phone_number');
   var signup_submit=document.querySelector('#submit');
 
   signup_submit.removeAttribute('disabled');
