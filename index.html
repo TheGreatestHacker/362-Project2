@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" id="check-out">
+<html lang="en" id="home">
 <head>
   <title>Ticket Purchase</title>
   <meta charset="utf-8" />
@@ -13,141 +13,36 @@
 
   <nav>
     <ul>
-      <li><a href="home.html">Home</a></li>
-      <li><a class="active">Check-out</a></li>
-      <li><a href="confirmation.html">Confirmation</a></li>
+      <li><a class="active" href="#home">Home</a></li>
+      <li><a href="index.html">Check-out</a></li>
+      <li><a href="#confirmation">Confirmation</a></li>
     </ul>
   </nav>
-  <form id="payment" action="#null" method="get">
-  <main id="checkout-content">
-    <section id="quantity">
-      <h2>Quantity</h2>
-      <select>
-        <option value=" ">--Please choose an option--</option>
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-        <option value="5">5</option>
-      </select>
+
+  <main id="content">
+    <h2 id="upcoming-events">Upcoming Events</h2>
+    <section class="grid">
+      <section id="event1">
+        <!--
+        <figure class="events">
+          <img src="img/barcelonaStadium.jpg" alt="FC Barcelona stadium.">
+        </figure>
+        -->
+      </section>
+      <section id="event2">
+      </section>
+      <section id="event3">
+      </section>
+      <section id="event4">
+      </section>
+      <section id="event5">
+      </section>
+      <section id="event6">
+      </section>
     </section>
-
-    <section id="contact-info">
-      <h2>Contact Info</h2>
-        <fieldset>
-          <label for="email">Email Adress:</label>
-          <input type="email" name="email" id="email" required/>
-        </fieldset>
-        <fieldset>
-          <label for="phonenumber">Phone Number:</label>
-          <input type="text" name="phonenumber" id="phonenumber" required/>
-        </fieldset>
-    </section>
-
-  <section id="payment-method">
-    <h2>Payment Information</h2>
-      <fieldset>
-        <label for="ccn">Credit Card Number</label>
-        <input type="text" maxlength="16" name="ccn" id="ccn" required/>
-      </fieldset>
-      <fieldset>
-        <label for="cvv">CVV</label>
-        <input type="text" name="cvv" maxlength="3" id="cvv" required/>
-      </fieldset>
-
-    <fieldset>
-      <label for="expmonthcontainer">Exp. Month</label>
-      <select id="expmonthcontainer" required>
-        <option value="">MM</option>
-        <option value="01">01-Jan</option>
-        <option value="2">02-Feb</option>
-        <option value="3">03-Mar</option>
-        <option value="4">04-Apr</option>
-        <option value="5">05-May</option>
-        <option value="6">06-Jun</option>
-        <option value="7">07-Jul</option>
-        <option value="8">08-Aug</option>
-        <option value="9">09-Sep</option>
-        <option value="10">10-Oct</option>
-        <option value="11">11-Nov</option>
-        <option value="12">12-Dec</option>
-      </select>
-    </fieldset>
-
-    <fieldset>
-      <label for="cardyear">Exp. Year</label>
-      <select id="cardyear" required>
-        <option value="">YY</option>
-        <option value="2019">2019</option>
-        <option value="2020">2020</option>
-        <option value="2021">2021</option>
-        <option value="2022">2022</option>
-        <option value="2023">2023</option>
-        <option value="2024">2024</option>
-        <option value="2025">2025</option>
-        <option value="2026">2026</option>
-        <option value="2027">2027</option>
-        <option value="2028">2028</option>
-        <option value="2029">2029</option>
-        <option value="2030">2030</option>
-      </select>
-    </fieldset>
-  </section>
-
-  <section id="billing-container">
-    <h2>Billing Information</h2>
-      <fieldset>
-        <label for="fname">First Name</label>
-        <input type="text" name="fname" id="fname" required/>
-      </fieldset>
-      <fieldset>
-        <label for="lname">Last Name</label>
-        <input type="text" name="lname" id="lname" required/>
-      </fieldset>
-
-    <label for="country-container">Country</label>
-    <select id="country-container">
-      <option value="">Country</option>
-      <option value="Canada">Canada</option>
-      <option value="Mexico">Mexico</option>
-      <option value="United States of America">United States of America</option>
-    </select>
-
-      <label for="address">Street Address</label>
-      <input type="text" name="address" id="address" required/>
-      <input type="text" name="address" id="suite" placeholder="Apt, suite, (optional)" required/>
-
-      <fieldset>
-        <label for="zip">Zip Code</label>
-        <input type="text" name="zip" id="zip" maxlength="5"  required/>
-      </fieldset>
-      <fieldset>
-        <label for="city">City</label>
-        <input type="text" name="city" id="city" required/>
-      </fieldset>
-      <fieldset>
-        <label for="state">State</label>
-        <input type="text" name="state" id="state" required/>
-      </fieldset>
-  </section>
-
-  <nav id="submit-container">
-    <input type="submit" name="submit" id="submit" value="Submit" />
-  </nav>
 
   </main>
-</form>
-  <aside class="sidebar">
-    <section class="purchase-summary">
-    <h2>Order Summary</h2>
-      <p class="label">price</p>
-      <p class="value">$0x1</p>
-      <p class="label">Fees</p>
-      <p class="value">$0</p>
-      <p class="label">Total</p>
-      <p class="value">$0</p>
-    </section>
-  </aside>
+
   <footer id="footer">
   </footer>
 <script src="site.js"></script>
