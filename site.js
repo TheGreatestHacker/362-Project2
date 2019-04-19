@@ -1,45 +1,42 @@
 (function(){
-  // Browser sanity check:
+  // Browser sanity check
   if (!('querySelector' in document && 'addEventListener' in document)) {
-    // Old, old browser. Say buh-bye
-    // console.log('Old browser');
+    // Old browser
+    console.log('Old browser');
     return;
   }
 
-  // Library of comparison functions
-  //
-  // Unlike the raw operators these encapsulate, functions
-  // can be passed around like any other value into other
-  // functions.
   function eq(value, condition) {
     return value === condition;
   }
-  function gt(value, condition) {
-    return value > condition;
-  }
-  function gte(value, condition) {
-    return value >= condition;
-  }
-  function lt(value, condition) {
-    return value < condition;
-  }
-  function lte(value, condition) {
-    return value <= condition;
-  }
 
-  // Data cleanup functions
-  function clean_nonnumbers(value) {
-    // returns value with all non-digits removed
+  // Data cleanup function
+  function clean_nonnumber(value) {
+    // Remove non-digit and return values
     return value.replace(/\D/g, '');
-  }
-  function clean_whitespace(value) {
-    // returns value with all whitespace characters removed
-    return value.replace(/\s/g, '');
+
   }
 
-  // Phone-specific santizier functions
+  function remove_all_whitespace(value) {
+    // Removes any form of whitespace
+    return value.replace(/ +/g, '');
+  }
+
+  function remove_excess_whitespace(value) {
+    // Remove excess whitespace
+    value = value.replace(/^ +/g, '');  // Remove whitespace from beginning
+    value = value.replace(/ +$/g, '');  // Remove whitespace from end
+    value = value.replace(/ +/g, ' ');  // Remove extra whitespace in the middle
+    return value;
+  }
+
+  // Remove country trip_us_country_code
   function strip_us_country_code(value) {
     return value.replace(/^1/, '');
+  }
+
+  function clean_whitespace(value) {
+    return value.replace(/\s/g, '');
   }
 
   // All purpose validate function. It takes a value,
@@ -62,72 +59,84 @@
     }
   }
 
-  // Phone validity functions
-  function validate_us_phone(value) {
-    var phone_number = strip_us_country_code(clean_nonnumbers(value));
+  // Email validity function
+  function validate_email(value){
+    var email = clean_whitespace(value);
+    return validate(email, /^[^@\s]+@[^@\s]+$/g);
+  }
+
+  // phone validity function
+  function validate_us_phone(value){
+    var phonenumber = strip_us_country_code(clean_nonnumber(value));
     return validate(phone_number.length, eq, 10);
   }
 
-  // Email validity function
-  function validate_email(value) {
-    var email = clean_whitespace(value);
-    return validate(contact, /^[^@\s]+@[^@\s]+$/g);
-  }
-
-  // Credit card number validity function
   function validate_ccn(ccn) {
-  // Valid CCN is a 16-digit string with no whitespace
-    return validate(remove_all_whitespace(ccn), /^[0-9]{16}$/g);
-  }
+   // validate ccn and remove white space
+   return validate(remove_all_whitespace(ccn), /^[0-9]{16}$/g);
+ }
 
-  // CVV validity function
-  function validate_ccv(ccv) {
-  // Valid security code is a 3 or 4 digit string with all whitespace removed
-    return validate(remove_all_whitespace(ccv), /^[0-9]{3}[0-9]?$/g);
-  }
-  // Exp month validity function
-  function validate_expr_month(expmonth_container) {
-  // Valid mo is a 2-digit number between 1-12
-    if (expmonth_container >= 1 && expmonth_container <= 12) {
-      return true;
+ function validate_cvv(cvv) {
+     // Valid security code is a 3 or 4 digit string with all whitespace removed
+     return validate(remove_all_whitespace(cvv), /^[0-9]{3}[0-9]?$/g);
+   }
+
+   function validate_expmonth(expmonthcontainer) {
+       // validate month
+       expmonthcontainer = Number(expmonthcontainer);
+
+       if (expmonthcontainer >= 1 && expmonthcontainer <= 12) {
+         return true;
+       }
+       return false;
+     }
+
+     function validate_expr_year(cardyear) {
+       // Validate cardyear is between the range instructed
+       cardyear = Number(cardyear)
+
+       if (cardyear >= 2019 && cardyear <= 2030) {
+         return true;
+       }
+       return false;
+     }
+
+
+
+
+  document.addEventListener('DOMContentLoaded', function(){
+    // select the necessary elements from the DOM
+    var signup_input = document.querySelector('#payment');
+    var signup_submit=document.querySelector('#submit');
+    var email_input=document.querySelector('#email');
+    var ccn_input=document.querySelector('#ccn');
+    var expmonth_input=document.querySelector('#expmonthcontainer');
+    var expr_year_input=document.querySelector('#cardyear');
+    var cvv_input=document.querySelector('#cvv');
+
+
+    signup_submit.removeAttribute('disabled');
+
+    // listen for keyup event anywhere in the formed
+    signup_input.addEventListener('keyup', function(){
+      var contact_value = contact_input.value;
+      var contact_error = document.querySelector('#contact-error');
+      // Disable signup button if either email or phone number is filled.
+      if (validate_us_phone(contact_value) || validate_email(contact_value)) {
+        signup_submit.removeAttribute('disabled');
+      }
+      else {
+        // show user error message
+
+        if(contact_value.length > 10 && contact_error.innerText.length === 0) {
+          contact_error.innerText = 'You need a ten-digit phone or valid email address.';
+        }
+        // Redisable submit button if it is unvalid
+        signup_submit.setAttribute('disabled', 'disabled');}
     }
-    return false;
-  }
 
-  // year validity function
-  function validate_expr_year(card_year) {
-    // Valid year is a 4-digit number after [current year]
-    if (card_year >= 2019 && card_year <= 9999) {
-      return true;
-    }
-    return false;
-  }
-
-  // name validity function
-  function validate_name(f_name, l_name) {
-    // Valid name is a non-empty string after removing excess whitespace
-    return validate(remove_excess_whitespace(f_name, l_name), /.+/g);
-  }
-
-  // ZIP code validity function
-  function validate_us_zip(value) {
-    var zip = clean_nonnumbers(value);
-    return validate(zip.length, eq, 5);
-  }
-
-
-document.addEventListener('DOMContentLoaded' ,function() {
-  console.log("DOM is loaded");
-
-  // select the necessary elements from the DOM
-  var signup_input = document.querySelector('#submit-container');
-  var contact_input = document.querySelector('#contact');
-  var phone_input = document.querySelector('#phone_number');
-  var signup_submit=document.querySelector('#submit');
-
-  signup_submit.removeAttribute('disabled');
-
-  var location = {
+    );
+    var location = {
     zip: document.querySelector('#zip'),
     state: document.querySelector('#state'),
     city: document.querySelector('#city')
@@ -191,7 +200,8 @@ if('fetch' in window) {
       }
   });
 }
- // End of DOMContentLoaded
-});
-// End of IIFE
+
+    // End of DOMContentLoaded
+  });
+  // End of IIFE
 }());
