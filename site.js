@@ -6,6 +6,7 @@
     return;
   }
 
+  // Data comparison function
   function eq(value, condition) {
     return value === condition;
   }
@@ -17,13 +18,13 @@
 
   }
 
+  // Removes any form of whitespace
   function remove_all_whitespace(value) {
-    // Removes any form of whitespace
     return value.replace(/ +/g, '');
   }
 
+  // Remove excess whitespace
   function remove_excess_whitespace(value) {
-    // Remove excess whitespace
     value = value.replace(/^ +/g, '');  // Remove whitespace from beginning
     value = value.replace(/ +$/g, '');  // Remove whitespace from end
     value = value.replace(/ +/g, ' ');  // Remove extra whitespace in the middle
@@ -68,7 +69,7 @@
   // phone validity function
   function validate_us_phone(value){
     var phonenumber = strip_us_country_code(clean_nonnumber(value));
-    return validate(phone_number.length, eq, 10);
+    return validate(phonenumber.length, eq, 10);
   }
 
   function validate_ccn(ccn) {
@@ -101,41 +102,51 @@
        return false;
      }
 
-
-
-
+  // select the necessary elements from the DOM
   document.addEventListener('DOMContentLoaded', function(){
-    // select the necessary elements from the DOM
-    var signup_input = document.querySelector('#payment');
-    var signup_submit=document.querySelector('#submit');
+    var signup_form = document.querySelector('#payment');
+    var signup_submit=document.querySelector('#submit');//submit button
+
     var email_input=document.querySelector('#email');
-    var ccn_input=document.querySelector('#ccn');
-    var expmonth_input=document.querySelector('#expmonthcontainer');
-    var expr_year_input=document.querySelector('#cardyear');
-    var cvv_input=document.querySelector('#cvv');
+    var phone_input=document.querySelector('#phonenumber');
+
+    //var ccn_input=document.querySelector('#ccn');
 
 
-    signup_submit.removeAttribute('disabled');
 
-    // listen for keyup event anywhere in the formed
-    signup_input.addEventListener('keyup', function(){
-      var contact_value = contact_input.value;
+    //signup_submit.removeAttribute('disabled');
+    signup_submit.setAttribute('disabled','disabled');
+
+
+
+    // listen for keyup event anywhere in the form
+    signup_form.addEventListener('keyup', function(){
+      //var contact_value = contact_input.value;
+      var phone_value = phone_input.value;
+      var email_value = email_input.value;
+      var ccn_input=document.querySelector('#ccn').value;
+      var cvv_input=document.querySelector('#cvv').value;
+      var expmonth_input=document.querySelector('#expmonthcontainer').value;
+      var expr_year_input=document.querySelector('#cardyear').value;
+
+
       var contact_error = document.querySelector('#contact-error');
       // Disable signup button if either email or phone number is filled.
-      if (validate_us_phone(contact_value) || validate_email(contact_value)) {
+      if (validate_us_phone(phone_value) && validate_email(email_value) && validate_ccn(ccn_input)
+      && validate_cvv(cvv_input) &&  ) {
         signup_submit.removeAttribute('disabled');
       }
       else {
         // show user error message
 
-        if(contact_value.length > 10 && contact_error.innerText.length === 0) {
-          contact_error.innerText = 'You need a ten-digit phone or valid email address.';
+        if(phone_value.length > 10) {
+          console.log("Invalid phone number!");
         }
-        // Redisable submit button if it is unvalid
-        signup_submit.setAttribute('disabled', 'disabled');}
-    }
+        // This will re-disable the submmit button if the input changes to an invalid state
+        signup_submit.setAttribute('disabled', 'disabled');
+      }
+    });
 
-    );
     var location = {
     zip: document.querySelector('#zip'),
     state: document.querySelector('#state'),
@@ -163,11 +174,14 @@ function validate(value,check,condition) {
     return false;
   }
 }
+
+//Function to validate the zip input
 function validate_zip(value){
   var zip = rmnumber(value);
   return validate(zip.length,equals,5);
 }
 
+//Function that calls zippopotam to fill out the form given the zipcode
 if('fetch' in window) {
   console.log("yay, this browser suppports the Fetch API");
   location.city.classList.add('fade-out');
@@ -198,8 +212,10 @@ if('fetch' in window) {
           location.state.classList.add('fade-in');
         });
       }
-  });
-}
+  });//end of IIFE event listener
+}//end of if statement checking the fetch api
+
+
 
     // End of DOMContentLoaded
   });
