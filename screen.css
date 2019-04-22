@@ -132,29 +132,28 @@ li a:hover {
 /*------------------End Home Page Styling-----------------*/
 
 #seating-grid{
+  background-color: purple;
   display: grid;
-  grid-template-columns: 1fr 25% 25% 1fr;
-  grid-template-rows: 1fr 1fr 1fr 1fr;
-  margin: 1em 5vw 1em 5vw ;
-  grid-gap: 50px;
+  grid-template-columns: 1fr 30% 20% 30% 1fr;
+  grid-template-rows: 1fr 25% 25% 25% 1fr;
 }
 
 #seating-info{
-  grid-row: 1/3;
-  grid-column: 1/ 5;
-  content: center;
+  background-color: yellow;
+  grid-row: 2/3;
+  grid-column: 2/5;
 }
 
 #seating-section {
   grid-row: 3/4;
-  grid-column: 1/3;
+  grid-column: 2/3;
   text-align: center;
   background-color: red;
 }
 
 #ticket-amount {
   grid-row: 3/4 ;
-  grid-column: 3/5 ;
+  grid-column: 4/5 ;
   text-align: center;
   background-color: green;
 }
@@ -162,5 +161,5 @@ li a:hover {
 #pricing {
   background-color: blue;
   grid-row: 4/5;
-  grid-column:1/5;
+  grid-column:2/5;
 }
