@@ -4,7 +4,7 @@
   <title>Ticket Purchase</title>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1.0,shrink-to-fit=no" />
-  <link rel="stylesheet" href="../screen.css" />
+  <link rel="stylesheet" href="../assets/css/screen.css" />
 </head>
 <body>
   <header id="header">
@@ -15,7 +15,7 @@
     <ul>
       <li><a href="../index.html">Home</a></li>
       <li><a class="active">Seating</a></li>
-      <li><a href="../checkout.html">Check-out</a></li>
+      <li><a href="../checkout/checkout.html">Check-out</a></li>
       <li><a href="#confirmation">Confirmation</a></li>
     </ul>
   </nav>
@@ -23,7 +23,7 @@
   <main id="seat-content">
     <section id="seating-grid">
       <figure id="seating-info">
-        <img id="seating-img" class="event" src="../img/barcelonaStadium.jpg" alt="FC Barcelona stadium.">
+        <img id="seating-img" class="event" src="../assets/img/barcelonaStadium.jpg" alt="FC Barcelona stadium.">
       </figure>
       <section id="seating-section">
         <h2>Seating Section</h2>
@@ -59,6 +59,10 @@
         <p>$</p>
       </section>
     </section>
+
+    <form id="continue-form" action="../checkout/checkout.html" method="get">
+  <input type="submit" name="continue" id="signup" value="Continue" />
+</form>
   </main>
 <script src="../assets/js/site.js"></script>
 </body>
