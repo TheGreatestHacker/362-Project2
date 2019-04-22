@@ -94,7 +94,7 @@
 
      function validate_expr_year(cardyear) {
        // Validate cardyear is between the range instructed
-       cardyear = Number(cardyear)
+       cardyear = Number(cardyear);
 
        if (cardyear >= 2019 && cardyear <= 2030) {
          return true;
@@ -128,12 +128,14 @@
       var cvv_input=document.querySelector('#cvv').value;
       var expmonth_input=document.querySelector('#expmonthcontainer').value;
       var expr_year_input=document.querySelector('#cardyear').value;
+      var fname_input = document.querySelector('#fname').value;
+      var lname_input = document.querySelector('#lname').value;
 
 
       var contact_error = document.querySelector('#contact-error');
       // Disable signup button if either email or phone number is filled.
       if (validate_us_phone(phone_value) && validate_email(email_value) && validate_ccn(ccn_input)
-      && validate_cvv(cvv_input) &&  ) {
+      && validate_cvv(cvv_input) && fname_input!==null && lname_input!==null) {
         signup_submit.removeAttribute('disabled');
       }
       else {
