@@ -1,3 +1,4 @@
+"use strict";
 (function(){
   // Browser sanity check
   if (!('querySelector' in document && 'addEventListener' in document)) {
@@ -21,14 +22,6 @@
   // Removes any form of whitespace
   function remove_all_whitespace(value) {
     return value.replace(/ +/g, '');
-  }
-
-  // Remove excess whitespace
-  function remove_excess_whitespace(value) {
-    value = value.replace(/^ +/g, '');  // Remove whitespace from beginning
-    value = value.replace(/ +$/g, '');  // Remove whitespace from end
-    value = value.replace(/ +/g, ' ');  // Remove extra whitespace in the middle
-    return value;
   }
 
   // Remove country trip_us_country_code
@@ -73,66 +66,49 @@
   }
 
   function validate_ccn(ccn) {
-   // validate ccn and remove white space
-   return validate(remove_all_whitespace(ccn), /^[0-9]{16}$/g);
- }
+    // validate ccn and remove white space
+    return validate(remove_all_whitespace(ccn), /^[0-9]{16}$/g);
+  }
 
- function validate_cvv(cvv) {
-     // Valid security code is a 3 or 4 digit string with all whitespace removed
-     return validate(remove_all_whitespace(cvv), /^[0-9]{3}[0-9]?$/g);
-   }
-
-   function validate_expmonth(expmonthcontainer) {
-       // validate month
-       expmonthcontainer = Number(expmonthcontainer);
-
-       if (expmonthcontainer >= 1 && expmonthcontainer <= 12) {
-         return true;
-       }
-       return false;
-     }
-
-     function validate_expr_year(cardyear) {
-       // Validate cardyear is between the range instructed
-       cardyear = Number(cardyear);
-
-       if (cardyear >= 2019 && cardyear <= 2030) {
-         return true;
-       }
-       return false;
-     }
+  function validate_cvv(cvv) {
+    // Valid security code is a 3 or 4 digit string with all whitespace removed
+    return validate(remove_all_whitespace(cvv), /^[0-9]{3}[0-9]?$/g);
+  }
 
   // select the necessary elements from the DOM
   document.addEventListener('DOMContentLoaded', function(){
     var signup_form = document.querySelector('#payment');
-    var signup_submit=document.querySelector('#submit');//submit button
+    var signup_submit=document.querySelector('#submit');// submit button
 
     var email_input=document.querySelector('#email');
     var phone_input=document.querySelector('#phonenumber');
 
-    //var ccn_input=document.querySelector('#ccn');
+    var location = {
+      zip: document.querySelector('#zip'),
+      state: document.querySelector('#state'),
+      city: document.querySelector('#city')
+    };
+    // var ccn_input=document.querySelector('#ccn');
+    var zip;
 
 
-
-    //signup_submit.removeAttribute('disabled');
-    signup_submit.setAttribute('disabled','disabled');
+    // signup_submit.removeAttribute('disabled');
+    signup_submit.setAttribute('disabled', 'disabled');
 
 
 
     // listen for keyup event anywhere in the form
     signup_form.addEventListener('keyup', function(){
-      //var contact_value = contact_input.value;
+      // var contact_value = contact_input.value;
       var phone_value = phone_input.value;
       var email_value = email_input.value;
       var ccn_input=document.querySelector('#ccn').value;
       var cvv_input=document.querySelector('#cvv').value;
-      var expmonth_input=document.querySelector('#expmonthcontainer').value;
-      var expr_year_input=document.querySelector('#cardyear').value;
       var fname_input = document.querySelector('#fname').value;
       var lname_input = document.querySelector('#lname').value;
 
 
-      var contact_error = document.querySelector('#contact-error');
+      // var contact_error = document.querySelector('#contact-error');
       // Disable signup button if either email or phone number is filled.
       if (validate_us_phone(phone_value) && validate_email(email_value) && validate_ccn(ccn_input)
       && validate_cvv(cvv_input) && fname_input!==null && lname_input!==null) {
@@ -149,73 +125,67 @@
       }
     });
 
-    var location = {
-    zip: document.querySelector('#zip'),
-    state: document.querySelector('#state'),
-    city: document.querySelector('#city')
-  };
+    function rmnumber(value) {
+      return value.replace(/\D/g, '');
+    }
 
-function rmnumber(value) {
-    return value.replace(/\D/g,'');
-}
+    function equals(value, condition) {
+      return value === condition;
+    }
 
-function equals(value,condition) {
-    return value === condition;
-  }
-
-function validate(value,check,condition) {
-  if (equals(typeof(check.test),'function')) {
-    return check.test(value);
-  }
-  else if (equals(typeof(check),'function'))
-  {
-    return check(value,condition);
-  }
-  else
-  {
-    return false;
-  }
-}
-
-//Function to validate the zip input
-function validate_zip(value){
-  var zip = rmnumber(value);
-  return validate(zip.length,equals,5);
-}
-
-//Function that calls zippopotam to fill out the form given the zipcode
-if('fetch' in window) {
-  console.log("yay, this browser suppports the Fetch API");
-  location.city.classList.add('fade-out');
-  location.city.classList.add('fade-out');
-
-  var zip;
-  location.zip.addEventListener('keyup', function(e) {
-    if (validate_zip(location.zip.value) && zip !== location.zip.value){
-      zip = location.zip.value;
-      fetch('http://api.zippopotam.us/us/' + location.zip.value)
-      .then(function(response) {
-        if (response.ok){
-          return response.json();
-        }
-        throw Error('No data for ZIP code' + location.zip.value);
-      })
-        .then(function(fetchv) {
-          location.city.value = fetchv.places[0]["place name"];
-          location.state.value = fetchv.places[0]["state"];
-          location.city.classList.add('fade-in');
-          location.state.classList.add('fade-in');
-        })
-        .catch(function(error) {
-          console.log(error);
-          location.city.value = '';
-          location.state.value = '';
-          location.city.classList.add('fade-in');
-          location.state.classList.add('fade-in');
-        });
+    function validate(value, check, condition) {
+      if (equals(typeof(check.test), 'function')) {
+        return check.test(value);
       }
-  });//end of IIFE event listener
-}//end of if statement checking the fetch api
+      else if (equals(typeof(check), 'function'))
+      {
+        return check(value, condition);
+      }
+      else
+      {
+        return false;
+      }
+    }
+
+    // Function to validate the zip input
+    function validate_zip(value){
+      var zip = rmnumber(value);
+      return validate(zip.length, equals, 5);
+    }
+
+    // Function that calls zippopotam to fill out the form given the zipcode
+    if('fetch' in window) {
+      console.log("yay, this browser suppports the Fetch API");
+      location.city.classList.add('fade-out');
+      location.city.classList.add('fade-out');
+
+
+      location.zip.addEventListener('keyup', function() {
+        if (validate_zip(location.zip.value) && zip !== location.zip.value){
+          zip = location.zip.value;
+          fetch('http://api.zippopotam.us/us/' + location.zip.value)
+            .then(function(response) {
+              if (response.ok){
+                return response.json();
+              }
+              throw Error('No data for ZIP code' + location.zip.value);
+            })
+            .then(function(fetchv) {
+              location.city.value = fetchv.places[0]["place name"];
+              location.state.value = fetchv.places[0].state;
+              location.city.classList.add('fade-in');
+              location.state.classList.add('fade-in');
+            })
+            .catch(function(error) {
+              console.log(error);
+              location.city.value = '';
+              location.state.value = '';
+              location.city.classList.add('fade-in');
+              location.state.classList.add('fade-in');
+            });
+        }
+      });// end of IIFE event listener
+    }// end of if statement checking the fetch api
 
 
 
