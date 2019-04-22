@@ -71,7 +71,7 @@ input, label, select {
 }
 
 /* Navigation Bar CSS*/
-ul {
+nav > ul {
   display: flex;
   list-style-type: none;
   margin: 0;
@@ -130,3 +130,37 @@ li a:hover {
   text-align: center;
 }
 /*------------------End Home Page Styling-----------------*/
+
+#seating-grid{
+  display: grid;
+  grid-template-columns: 1fr 25% 25% 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
+  margin: 1em 5vw 1em 5vw ;
+  grid-gap: 50px;
+}
+
+#seating-info{
+  grid-row: 1/3;
+  grid-column: 1/ 5;
+  content: center;
+}
+
+#seating-section {
+  grid-row: 3/4;
+  grid-column: 1/3;
+  text-align: center;
+  background-color: red;
+}
+
+#ticket-amount {
+  grid-row: 3/4 ;
+  grid-column: 3/5 ;
+  text-align: center;
+  background-color: green;
+}
+
+#pricing {
+  background-color: blue;
+  grid-row: 4/5;
+  grid-column:1/5;
+}
