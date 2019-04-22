@@ -20,21 +20,6 @@
     }
   }
 
-  // Function to be called later for determining localStorage support
-  // Taken from discussion at https://gist.github.com/paulirish/5558557
-  function storageAvailable(type) {
-    try {
-      var storage = window[type],
-      x = '__storage_test__';
-      storage.setItem(x, x);
-      storage.removeItem(x);
-      return true;
-    }
-    catch(e) {
-      return false;
-    }
-  }
-
   // Data comparison function
   function eq(value, condition) {
     return value === condition;
@@ -137,7 +122,7 @@
      name: input_element.name,
      type: input_element.tagName.toLowerCase(),
      value: input_element.value
-   }
+   };
  }
 
  // Store a prefixed storage item with input item data
@@ -172,7 +157,7 @@
     for (var key of saved_keys) {
       var item = retrieveAndParseInputStorageItem(key);
       // Use old-school getElementById; no need to prefix with #
-      var input_by_id = document.getElementById(item.id)
+      var input_by_id = document.getElementById(item.id);
       if (input_by_id) {
         input_by_id.value = item.value;
       }
