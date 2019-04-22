@@ -297,7 +297,7 @@
         }
       });// end of IIFE event listener
     }// end of if statement checking the fetch api
-    
+
 
 
     // End of DOMContentLoaded
