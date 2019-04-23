@@ -176,16 +176,7 @@
     var signup_form = document.querySelector('#payment');
     var signup_submit=document.querySelector('#submit');// submit button
 
-    var email_input=document.querySelector('#email');
-    var phone_input=document.querySelector('#phonenumber');
 
-    var location = {
-      zip: document.querySelector('#zip'),
-      state: document.querySelector('#state'),
-      city: document.querySelector('#city')
-    };
-    // var ccn_input=document.querySelector('#ccn');
-    var zip;
 
 
     // signup_submit.removeAttribute('disabled');
