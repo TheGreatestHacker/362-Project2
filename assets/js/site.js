@@ -176,16 +176,7 @@
     var signup_form = document.querySelector('#payment');
     var signup_submit=document.querySelector('#submit');// submit button
 
-    var email_input=document.querySelector('#email');
-    var phone_input=document.querySelector('#phonenumber');
 
-    var location = {
-      zip: document.querySelector('#zip'),
-      state: document.querySelector('#state'),
-      city: document.querySelector('#city')
-    };
-    // var ccn_input=document.querySelector('#ccn');
-    var zip;
 
 
     // signup_submit.removeAttribute('disabled');
@@ -195,25 +186,42 @@
 
     // listen for keyup event anywhere in the form
     signup_form.addEventListener('keyup', function(){
-      // var contact_value = contact_input.value;
-      var phone_value = phone_input.value;
-      var email_value = email_input.value;
+      var email_input=document.querySelector('#email').value;
+      var phone_input=document.querySelector('#phonenumber').value;
       var ccn_input=document.querySelector('#ccn').value;
       var cvv_input=document.querySelector('#cvv').value;
       var fname_input = document.querySelector('#fname').value;
       var lname_input = document.querySelector('#lname').value;
 
+      //Local storage for the checkout webpage
+      var checkout = {
+        //TODO: implement get syntax to avoid repeating document.querySelector so dang much
+        form: document.querySelector('#payment'),
+        get title() {
+          return this.form.querySelector('#title');
+        },
+        email: document.querySelector('#email'),
+        phone_input: document.querySelector('#phonenumber'),
+        ccn: document.querySelector('#ccn'),
+        cvv: document.querySelector('#cvv'),
+        fname:  document.querySelector('#fname'),
+        lname: document.querySelector('#lname'),
+
+        submit_area: document.querySelector('#submit-container'),
+        submit_button: document.querySelector('#submit')
+        //eh_submit_button: document.createElement('a')
+      } 
 
       // var contact_error = document.querySelector('#contact-error');
       // Disable signup button if either email or phone number is filled.
-      if (validate_us_phone(phone_value) && validate_email(email_value) && validate_ccn(ccn_input)
+      if (validate_us_phone(phone_input) && validate_email(email_input) && validate_ccn(ccn_input)
       && validate_cvv(cvv_input) && fname_input!==null && lname_input!==null) {
         signup_submit.removeAttribute('disabled');
       }
       else {
         // show user error message
 
-        if(phone_value.length > 10) {
+        if(phone_input.length > 10) {
           console.log("Invalid phone number!");
         }
         // This will re-disable the submmit button if the input changes to an invalid state
@@ -249,13 +257,19 @@
       return validate(zip.length, equals, 5);
     }
 
+    var location = {
+      zip: document.querySelector('#zip'),
+      state: document.querySelector('#state'),
+      city: document.querySelector('#city')
+    };
+
     // Function that calls zippopotam to fill out the form given the zipcode
     if('fetch' in window) {
       console.log("yay, this browser suppports the Fetch API");
       location.city.classList.add('fade-out');
       location.city.classList.add('fade-out');
 
-
+      var zip;
       location.zip.addEventListener('keyup', function() {
         if (validate_zip(location.zip.value) && zip !== location.zip.value){
           zip = location.zip.value;
