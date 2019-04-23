@@ -163,3 +163,34 @@ li a:hover {
   grid-row: 4/5;
   grid-column:2/5;
 }
+
+#submit {
+  font-weight: bold;
+  border-radius: 0.2rem;
+  padding: 0.7em 3em 0.7em  3em;   //top, right, bottom left
+}
+
+input[type="submit"] {
+  background-color: #7fffd4;
+
+}
+
+input[type="submit"]:disabled {
+  background-color: #808080;
+}
+
+@media screen and (min-width: 350px) {
+  #seatlevel {
+    width: 50%;
+  }
+
+  #sectionlevel {
+    width: 50%;
+    }
+
+/*  #sectionlevel {
+    padding: 0.5em;
+  }
+*/
+  }
+}
