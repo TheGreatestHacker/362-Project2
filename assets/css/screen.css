@@ -170,6 +170,17 @@ li a:hover {
   padding: 0.7em 3em 0.7em  3em;   //top, right, bottom left
 }
 
+#continue-form {
+  text-align: center;
+  padding: 0.5em;
+}
+
+#signup {
+  font-weight: bold;
+  font-size: 1.25em;
+  text-align: center;
+}
+
 input[type="submit"] {
   background-color: #7fffd4;
 
