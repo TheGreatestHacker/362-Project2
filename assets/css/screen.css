@@ -12,6 +12,7 @@ html {
   font-family: "Merriweather", sans-serif;
   font-size: 1.125em; /*18/16= 1.125em*/
   line-height: 1.222222em; /*22/18= 1.222222em*/
+  background-color: #f0f8ff;
 }
 
 h1 {
@@ -132,14 +133,12 @@ li a:hover {
 /*------------------End Home Page Styling-----------------*/
 
 #seating-grid{
-  background-color: purple;
   display: grid;
   grid-template-columns: 1fr 30% 20% 30% 1fr;
   grid-template-rows: 1fr 25% 25% 25% 1fr;
 }
 
 #seating-info{
-  background-color: yellow;
   grid-row: 2/3;
   grid-column: 2/5;
 }
@@ -148,18 +147,64 @@ li a:hover {
   grid-row: 3/4;
   grid-column: 2/3;
   text-align: center;
-  background-color: red;
+  background-color: #34BBCE;
 }
 
 #ticket-amount {
   grid-row: 3/4 ;
   grid-column: 4/5 ;
   text-align: center;
-  background-color: green;
+  background-color: #34BBCE;
 }
 
 #pricing {
-  background-color: blue;
   grid-row: 4/5;
   grid-column:2/5;
+}
+
+#submit {
+  font-weight: bold;
+  border-radius: 0.2rem;
+  padding: 0.7em 3em 0.7em  3em;   //top, right, bottom left
+}
+
+#continue-form {
+  text-align: center;
+}
+
+#signup {
+  font-weight: bold;
+  font-size: 1.25em;
+  text-align: center;
+}
+
+input[type="submit"] {
+  background-color: #7fffd4;
+
+}
+
+input[type="submit"]:disabled {
+  background-color: #808080;
+}
+
+#pricing {
+  text-align: center;
+}
+
+@media screen and (min-width: 350px) {
+  #seatlevel {
+    width: 50%;
+  }
+
+  #sectionlevel {
+    width: 50%;
+    }
+
+  @media screen and (min-width: 1000px) {
+    #seating-grid {
+      padding-right: 3em;
+      padding-left: 3em;
+      }
+  }
+  }
 }
