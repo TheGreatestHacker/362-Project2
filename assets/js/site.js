@@ -5,7 +5,9 @@
     // Old browser
     console.log('Old browser');
     return;
-  }// Function to be called later for determining localStorage support
+  }
+
+  // Function to be called later for determining localStorage support
   // Taken from discussion at https://gist.github.com/paulirish/5558557
   function storageAvailable(type) {
     try {
@@ -176,14 +178,6 @@
     var signup_form = document.querySelector('#payment');
     var signup_submit=document.querySelector('#submit');// submit button
 
-
-
-
-    // signup_submit.removeAttribute('disabled');
-    signup_submit.setAttribute('disabled', 'disabled');
-
-
-
     // listen for keyup event anywhere in the form
     signup_form.addEventListener('keyup', function(){
       var email_input=document.querySelector('#email').value;
@@ -193,7 +187,8 @@
       var fname_input = document.querySelector('#fname').value;
       var lname_input = document.querySelector('#lname').value;
 
-      //Local storage for the checkout webpage
+      //create an object called checkout that will have all of the form's
+      //input placed into attributes for Local storage to use
       var checkout = {
         //TODO: implement get syntax to avoid repeating document.querySelector so dang much
         form: document.querySelector('#payment'),
@@ -201,33 +196,67 @@
           return this.form.querySelector('#title');
         },
         email: document.querySelector('#email'),
-        phone_input: document.querySelector('#phonenumber'),
+        phone: document.querySelector('#phonenumber'),
         ccn: document.querySelector('#ccn'),
         cvv: document.querySelector('#cvv'),
         fname:  document.querySelector('#fname'),
         lname: document.querySelector('#lname'),
-
-        submit_area: document.querySelector('#submit-container'),
+        //submit_area: document.querySelector('#submit-container'),
         submit_button: document.querySelector('#submit')
         //eh_submit_button: document.createElement('a')
-      } 
-
-      // var contact_error = document.querySelector('#contact-error');
-      // Disable signup button if either email or phone number is filled.
-      if (validate_us_phone(phone_input) && validate_email(email_input) && validate_ccn(ccn_input)
-      && validate_cvv(cvv_input) && fname_input!==null && lname_input!==null) {
-        signup_submit.removeAttribute('disabled');
       }
-      else {
-        // show user error message
 
-        if(phone_input.length > 10) {
-          console.log("Invalid phone number!");
+
+      if(storageAvailable('localStorage')){
+        checkout.form.addEventListener('input', function(){
+          //console.log(checkout.form.id);
+          console.log(event.target.value);
+          localStorage.setItem(checkout.form.id, JSON.stringify(checkout));
+        });//end blog.form event listener
+      }//end if statement
+
+
+      /*
+      if(storageAvailable('localStorage')){
+        restorePrefixedFormInputsFromLocalStorage('payment');
+        checkout.form.addEventListener('input', function(){
+          //console.log(checkout.form.id);
+          //console.log(checkout.email.value);
+          //console.log(checkout.phone.value);
+          console.log(event.target.value);
+          storePrefixedInputStorageItem(checkout.form.id, event.target)
+        });//end blog.form event listener
+      }//end if statement
+
+      //Listen to the form's submit event, intecept and display a confimration
+      // where the form one was
+      checkout.form.addEventListener('submit',function(e){
+        e.preventDefault();
+        //checkout.form.innerHTML = '<h2>Post saved successfully</h2>';
+        if(storageAvailable('localStorage')){
+          destroyPrefixedStorageItemKeys(checkout.form.id);
         }
-        // This will re-disable the submmit button if the input changes to an invalid state
-        signup_submit.setAttribute('disabled', 'disabled');
+      });//end of checkout form event listener
+    */
+
+    // signup_submit.removeAttribute('disabled');
+    signup_submit.setAttribute('disabled', 'disabled');
+
+    // var contact_error = document.querySelector('#contact-error');
+    // Disable signup button if either email or phone number is filled.
+    if (validate_us_phone(phone_input) && validate_email(email_input) && validate_ccn(ccn_input)
+    && validate_cvv(cvv_input) && fname_input!==null && lname_input!==null) {
+      signup_submit.removeAttribute('disabled');
+    }
+    else {
+      // show user error message
+      if(phone_input.length > 10) {
+        console.log("Invalid phone number!");
       }
-    });
+      // This will re-disable the submmit button if the input changes to an invalid state
+      signup_submit.setAttribute('disabled', 'disabled');
+    }
+  });
 
     function rmnumber(value) {
       return value.replace(/\D/g, '');
