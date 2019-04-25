@@ -21,7 +21,8 @@
   </nav>
 
   <main id="seat-content">
-    <section id="seating-grid">
+
+    <section id="seating-grid" action="../checkout/checkout.html" method="get">
       <figure id="seating-info">
         <img id="seating-img" class="event" src="../assets/img/barcelonaStadium.jpg" alt="FC Barcelona stadium.">
       </figure>
@@ -58,11 +59,8 @@
         <p>Total Price:</p>
         <p>$</p>
       </section>
-    </section>
-
-    <form id="continue-form" action="../checkout/checkout.html" method="get">
-  <input type="submit" name="continue" id="signup" value="Continue" />
-</form>
+      <input type="submit" name="continue" id="seat-submit" value="Continue" />
+    </form>
   </main>
 <script src="../assets/js/site.js"></script>
 </body>

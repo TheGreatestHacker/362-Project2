@@ -173,7 +173,7 @@
     }
   }
 
-  // select the necessary elements from the DOM
+  //---------------------------select the necessary elements from the DOM--------------------------------
   document.addEventListener('DOMContentLoaded', function(){
     var signup_form = document.querySelector('#payment');
     var signup_submit=document.querySelector('#submit');// submit button
@@ -186,58 +186,8 @@
       var cvv_input=document.querySelector('#cvv').value;
       var fname_input = document.querySelector('#fname').value;
       var lname_input = document.querySelector('#lname').value;
+      console.log("You pressed the key")
 
-      //create an object called checkout that will have all of the form's
-      //input placed into attributes for Local storage to use
-      var checkout = {
-        //TODO: implement get syntax to avoid repeating document.querySelector so dang much
-        form: document.querySelector('#payment'),
-        get title() {
-          return this.form.querySelector('#title');
-        },
-        email: document.querySelector('#email'),
-        phone: document.querySelector('#phonenumber'),
-        ccn: document.querySelector('#ccn'),
-        cvv: document.querySelector('#cvv'),
-        fname:  document.querySelector('#fname'),
-        lname: document.querySelector('#lname'),
-        //submit_area: document.querySelector('#submit-container'),
-        submit_button: document.querySelector('#submit')
-        //eh_submit_button: document.createElement('a')
-      }
-
-
-      if(storageAvailable('localStorage')){
-        checkout.form.addEventListener('input', function(){
-          //console.log(checkout.form.id);
-          console.log(event.target.value);
-          localStorage.setItem(checkout.form.id, JSON.stringify(checkout));
-        });//end blog.form event listener
-      }//end if statement
-
-
-      /*
-      if(storageAvailable('localStorage')){
-        restorePrefixedFormInputsFromLocalStorage('payment');
-        checkout.form.addEventListener('input', function(){
-          //console.log(checkout.form.id);
-          //console.log(checkout.email.value);
-          //console.log(checkout.phone.value);
-          console.log(event.target.value);
-          storePrefixedInputStorageItem(checkout.form.id, event.target)
-        });//end blog.form event listener
-      }//end if statement
-
-      //Listen to the form's submit event, intecept and display a confimration
-      // where the form one was
-      checkout.form.addEventListener('submit',function(e){
-        e.preventDefault();
-        //checkout.form.innerHTML = '<h2>Post saved successfully</h2>';
-        if(storageAvailable('localStorage')){
-          destroyPrefixedStorageItemKeys(checkout.form.id);
-        }
-      });//end of checkout form event listener
-    */
 
     // signup_submit.removeAttribute('disabled');
     signup_submit.setAttribute('disabled', 'disabled');
@@ -256,7 +206,7 @@
       // This will re-disable the submmit button if the input changes to an invalid state
       signup_submit.setAttribute('disabled', 'disabled');
     }
-  });
+  });//end of key up listener
 
     function rmnumber(value) {
       return value.replace(/\D/g, '');
@@ -326,7 +276,59 @@
       });// end of IIFE event listener
     }// end of if statement checking the fetch api
 
+    /*
+    //create an object called checkout that will have all of the form's
+    //input placed into attributes for Local storage to use
+    var checkout = {
+      //TODO: implement get syntax to avoid repeating document.querySelector so dang much
+      form: document.querySelector('#payment'),
+      get title() {
+        return this.form.querySelector('#title');
+      },
+      email: document.querySelector('#email'),
+      phone: document.querySelector('#phonenumber'),
+      ccn: document.querySelector('#ccn'),
+      cvv: document.querySelector('#cvv'),
+      fname:  document.querySelector('#fname'),
+      lname: document.querySelector('#lname'),
+      //submit_area: document.querySelector('#submit-container'),
+      submit_button: document.querySelector('#submit')
+      //eh_submit_button: document.createElement('a')
+    }
 
+
+    if(storageAvailable('localStorage')){
+      checkout.form.addEventListener('input', function(){
+        //console.log(checkout.form.id);
+        console.log(event.target.value);
+        localStorage.setItem(checkout.form.id, JSON.stringify(checkout));
+      });//end blog.form event listener
+    }//end if statement
+
+
+
+    if(storageAvailable('localStorage')){
+      restorePrefixedFormInputsFromLocalStorage('payment');
+      checkout.form.addEventListener('input', function(){
+        //console.log(checkout.form.id);
+        //console.log(checkout.email.value);
+        //console.log(checkout.phone.value);
+        console.log(event.target.value);
+        storePrefixedInputStorageItem(checkout.form.id, event.target)
+      });//end blog.form event listener
+    }//end if statement
+
+    //Listen to the form's submit event, intecept and display a confimration
+    // where the form one was
+    checkout.form.addEventListener('submit',function(e){
+      e.preventDefault();
+      //checkout.form.innerHTML = '<h2>Post saved successfully</h2>';
+      if(storageAvailable('localStorage')){
+        destroyPrefixedStorageItemKeys(checkout.form.id);
+      }
+    });//end of checkout form event listener
+
+    */
 
     // End of DOMContentLoaded
   });

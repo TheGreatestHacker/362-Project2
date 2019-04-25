@@ -162,7 +162,7 @@ li a:hover {
   grid-column:2/5;
 }
 
-#submit {
+#seat-submit {
   font-weight: bold;
   border-radius: 0.2rem;
   padding: 0.7em 3em 0.7em  3em;   //top, right, bottom left
@@ -199,6 +199,7 @@ input[type="submit"]:disabled {
   #sectionlevel {
     width: 50%;
     }
+}
 
   @media screen and (min-width: 1000px) {
     #seating-grid {
@@ -206,5 +207,3 @@ input[type="submit"]:disabled {
       padding-left: 3em;
       }
   }
-  }
-}
