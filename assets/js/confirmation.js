@@ -47,8 +47,8 @@
     document.getElementById("cfname").innerHTML = checkout.fname;
     document.getElementById("clname").innerHTML = checkout.lname;
     document.getElementById("cemail").innerHTML = checkout.email;
-    document.getElementById("cticket-amount").innerHTML = "1";
-    document.getElementById("ctotal").innerHTML = "$Hella Guap$";
+    document.getElementById("cticket-amount").innerHTML = "N/A";
+    document.getElementById("ctotal").innerHTML = "N/A";
 
   });  // End of DOMContentLoaded
 }()); // End of IIFE
