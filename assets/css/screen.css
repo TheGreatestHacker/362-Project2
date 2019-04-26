@@ -163,9 +163,17 @@ li a:hover {
 }
 
 #seat-submit {
+  grid-row: 5/6;
+  grid-column:2/5;
   font-weight: bold;
   border-radius: 0.2rem;
-  padding: 0.7em 3em 0.7em  3em;   //top, right, bottom left
+  padding: 0.7em 3em 0.7em  3em;   /*top, right, bottom left */
+}
+
+#submit {
+  font-weight: bold;
+  border-radius: 0.2em;
+  padding: 0.7em 3em 0.7em  3em;   /*top, right, bottom left */
 }
 
 #continue-form {
@@ -193,7 +201,7 @@ input[type="submit"]:disabled {
 
 @media screen and (min-width: 350px) {
   #seatlevel {
-    width: 50%;
+    width: 40%;
   }
 
   #sectionlevel {
