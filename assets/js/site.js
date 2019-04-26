@@ -12,7 +12,7 @@
   function storageAvailable(type) {
     try {
       var storage = window[type],
-      x = '__storage_test__';
+        x = '__storage_test__';
       storage.setItem(x, x);
       storage.removeItem(x);
       return true;
@@ -31,7 +31,6 @@
   function clean_nonnumber(value) {
     // Remove non-digit and return values
     return value.replace(/\D/g, '');
-
   }
 
   // Removes any form of whitespace
@@ -90,6 +89,12 @@
     return validate(remove_all_whitespace(cvv), /^[0-9]{3}[0-9]?$/g);
   }
 
+  // Function to validate the zip input
+  function validate_zip(value){
+    var zip = clean_nonnumber(value);
+    return validate(zip.length, eq, 5);
+  }
+
   // Debounce function to limit calls on repeated events
   // See for e.g., https://codeburst.io/throttling-and-debouncing-in-javascript-b01cad5c8edf
   var debounce = function debounce(func, delay) {
@@ -104,76 +109,7 @@
     };
   };
 
-  // Functions for working with form data
-  // Return all data-rich input elements
-  function collectFormInputElements(form_selector) {
-    var saved_input_elements = [];
-    var input_elements = document.querySelector(form_selector).elements;
-    for (var input of input_elements) {
-      if(input.type !== 'submit') {
-        saved_input_elements.push(input);
-      }
-    }
-    return saved_input_elements;
-  }
-
-  // Get all interesting information about an input element
- function getInputData(input_element) {
-   return {
-     id: input_element.id,
-     name: input_element.name,
-     type: input_element.tagName.toLowerCase(),
-     value: input_element.value
-   };
- }
-
- // Store a prefixed storage item with input item data
-  function storePrefixedInputStorageItem(prefix,input_element) {
-    var item_data = getInputData(input_element);
-    localStorage.setItem(prefix + item_data.id, JSON.stringify(item_data));
-  }
-
-  // Retrieve and parse an input storage item
-  function retrieveAndParseInputStorageItem(key) {
-    return JSON.parse(localStorage.getItem(key));
-  }
-
-  // Retrieve all prefixed storage item keys
-  function retrievePrefixedStorageItemKeys(prefix) {
-    var saved_keys = [];
-    for(var i = 0; i < localStorage.length; i++) {
-      // Get only the items that begin with `prefix`
-      var key = localStorage.key(i);
-      if (key.startsWith(prefix)) {
-        saved_keys.push(key);
-      }
-    }
-    return saved_keys;
-  }
-
-  function restorePrefixedFormInputsFromLocalStorage(prefix) {
-    // Get an array of all the prefixed stored keys
-    var saved_keys = retrievePrefixedStorageItemKeys(prefix);
-    // Loop through the array and use the stored object data to
-    // restore the value of the corresponding form item
-    for (var key of saved_keys) {
-      var item = retrieveAndParseInputStorageItem(key);
-      // Use old-school getElementById; no need to prefix with #
-      var input_by_id = document.getElementById(item.id);
-      if (input_by_id) {
-        input_by_id.value = item.value;
-      }
-    }
-  }
-
-  function destroyPrefixedStorageItemKeys(prefix) {
-    var keys_to_destroy = retrievePrefixedStorageItemKeys(prefix);
-    for (var key of keys_to_destroy) {
-      localStorage.removeItem(key);
-    }
-  }
-
-  //---------------------------select the necessary elements from the DOM--------------------------------
+  // ---------------------------select the necessary elements from the DOM--------------------------------
   document.addEventListener('DOMContentLoaded', function(){
     var signup_form = document.querySelector('#payment');
     var signup_submit=document.querySelector('#submit');// submit button
@@ -186,55 +122,44 @@
       var cvv_input=document.querySelector('#cvv').value;
       var fname_input = document.querySelector('#fname').value;
       var lname_input = document.querySelector('#lname').value;
-      console.log("You pressed the key")
 
+      // create an object called checkout that will have all of the form's
+      // input placed into attributes for Local storage to use
+      var checkout = {
+        // TODO: implement get syntax to avoid repeating document.querySelector so dang much
+        email: document.querySelector('#email').value,
+        phone: document.querySelector('#phonenumber').value,
+        ccn: document.querySelector('#ccn').value,
+        cvv: document.querySelector('#cvv').value,
+        fname: fname_input,
+        lname: document.querySelector('#lname').value
+      };
 
-    // signup_submit.removeAttribute('disabled');
-    signup_submit.setAttribute('disabled', 'disabled');
-
-    // var contact_error = document.querySelector('#contact-error');
-    // Disable signup button if either email or phone number is filled.
-    if (validate_us_phone(phone_input) && validate_email(email_input) && validate_ccn(ccn_input)
-    && validate_cvv(cvv_input) && fname_input!==null && lname_input!==null) {
-      signup_submit.removeAttribute('disabled');
-    }
-    else {
-      // show user error message
-      if(phone_input.length > 10) {
-        console.log("Invalid phone number!");
-      }
-      // This will re-disable the submmit button if the input changes to an invalid state
+      // signup_submit.removeAttribute('disabled');
       signup_submit.setAttribute('disabled', 'disabled');
-    }
-  });//end of key up listener
 
-    function rmnumber(value) {
-      return value.replace(/\D/g, '');
-    }
-
-    function equals(value, condition) {
-      return value === condition;
-    }
-
-    function validate(value, check, condition) {
-      if (equals(typeof(check.test), 'function')) {
-        return check.test(value);
+      // var contact_error = document.querySelector('#contact-error');
+      // Disable signup button if either email or phone number is filled.
+      if (validate_us_phone(phone_input) && validate_email(email_input) && validate_ccn(ccn_input) && validate_cvv(cvv_input) && fname_input!==null && lname_input!==null) {
+        signup_submit.removeAttribute('disabled');
       }
-      else if (equals(typeof(check), 'function'))
-      {
-        return check(value, condition);
+      else {
+        // show user error message
+        if(phone_input.length > 10) {
+          console.log("Invalid phone number!");
+        }
+        // This will re-disable the submmit button if the input changes to an invalid state
+        signup_submit.setAttribute('disabled', 'disabled');
       }
-      else
-      {
-        return false;
-      }
-    }
 
-    // Function to validate the zip input
-    function validate_zip(value){
-      var zip = rmnumber(value);
-      return validate(zip.length, equals, 5);
-    }
+      if(storageAvailable('localStorage')){
+        signup_form.addEventListener('submit', function(){
+          localStorage.setItem("payment_info", JSON.stringify(checkout));
+          console.log("Form submitted and data stored");
+        }); // end blog.form event listener
+      } // end if statement to check for localStorage
+
+    });// end of key up listener
 
     var location = {
       zip: document.querySelector('#zip'),
@@ -273,64 +198,8 @@
               location.state.classList.add('fade-in');
             });
         }
-      });// end of IIFE event listener
-    }// end of if statement checking the fetch api
+      });// end of event listener
+    }// end of fetch
 
-    /*
-    //create an object called checkout that will have all of the form's
-    //input placed into attributes for Local storage to use
-    var checkout = {
-      //TODO: implement get syntax to avoid repeating document.querySelector so dang much
-      form: document.querySelector('#payment'),
-      get title() {
-        return this.form.querySelector('#title');
-      },
-      email: document.querySelector('#email'),
-      phone: document.querySelector('#phonenumber'),
-      ccn: document.querySelector('#ccn'),
-      cvv: document.querySelector('#cvv'),
-      fname:  document.querySelector('#fname'),
-      lname: document.querySelector('#lname'),
-      //submit_area: document.querySelector('#submit-container'),
-      submit_button: document.querySelector('#submit')
-      //eh_submit_button: document.createElement('a')
-    }
-
-
-    if(storageAvailable('localStorage')){
-      checkout.form.addEventListener('input', function(){
-        //console.log(checkout.form.id);
-        console.log(event.target.value);
-        localStorage.setItem(checkout.form.id, JSON.stringify(checkout));
-      });//end blog.form event listener
-    }//end if statement
-
-
-
-    if(storageAvailable('localStorage')){
-      restorePrefixedFormInputsFromLocalStorage('payment');
-      checkout.form.addEventListener('input', function(){
-        //console.log(checkout.form.id);
-        //console.log(checkout.email.value);
-        //console.log(checkout.phone.value);
-        console.log(event.target.value);
-        storePrefixedInputStorageItem(checkout.form.id, event.target)
-      });//end blog.form event listener
-    }//end if statement
-
-    //Listen to the form's submit event, intecept and display a confimration
-    // where the form one was
-    checkout.form.addEventListener('submit',function(e){
-      e.preventDefault();
-      //checkout.form.innerHTML = '<h2>Post saved successfully</h2>';
-      if(storageAvailable('localStorage')){
-        destroyPrefixedStorageItemKeys(checkout.form.id);
-      }
-    });//end of checkout form event listener
-
-    */
-
-    // End of DOMContentLoaded
-  });
-  // End of IIFE
-}());
+  });  // End of DOMContentLoaded
+}());  // End of IIFE
