@@ -12,7 +12,7 @@
   function storageAvailable(type) {
     try {
       var storage = window[type],
-      x = '__storage_test__';
+        x = '__storage_test__';
       storage.setItem(x, x);
       storage.removeItem(x);
       return true;
@@ -31,7 +31,6 @@
   function clean_nonnumber(value) {
     // Remove non-digit and return values
     return value.replace(/\D/g, '');
-
   }
 
   // Removes any form of whitespace
@@ -88,6 +87,12 @@
   function validate_cvv(cvv) {
     // Valid security code is a 3 or 4 digit string with all whitespace removed
     return validate(remove_all_whitespace(cvv), /^[0-9]{3}[0-9]?$/g);
+  }
+
+  // Function to validate the zip input
+  function validate_zip(value){
+    var zip = clean_nonnumber(value);
+    return validate(zip.length, eq, 5);
   }
 
   // Debounce function to limit calls on repeated events
