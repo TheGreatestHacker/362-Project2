@@ -199,13 +199,13 @@ input[type="submit"]:disabled {
   text-align: center;
 }
 
-@media screen and (min-width: 350px) {
+@media screen and (min-width: 300px) {
   #seatlevel {
-    width: 40%;
+    max-width: 50%;
   }
 
   #sectionlevel {
-    width: 50%;
+    max-width: 50%;
     }
 }
 
