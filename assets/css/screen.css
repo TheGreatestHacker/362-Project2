@@ -105,7 +105,7 @@ li a:hover {
 /*-----------------Home Page Styling (index)---------------*/
 .grid-area {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(16.666667em, 1fr));
   grid-gap: 1.5rem;
   margin: 1em 5vw 1em 5vw; /*top left bottom right*/
 }
@@ -173,12 +173,21 @@ li a:hover {
 #pricing {
   grid-row: 4/5;
   grid-column:2/5;
+  text-align: center;
 }
 
 #seat-submit {
+  grid-row: 5/6;
+  grid-column: 2/5;
   font-weight: bold;
   border-radius: 0.2rem;
-  padding: 0.7em 3em 0.7em  3em;   //top, right, bottom left
+  padding: 0.7em 3em 0.7em  3em;  /* top, right, bottom left */
+}
+
+#submit {
+  font-weight: bold;
+  border-radius: 0.2em;
+  padding: 0.7em 3em 0.7em  3em;  /* top, right, bottom left */
 }
 
 #continue-form {
@@ -200,12 +209,8 @@ input[type="submit"]:disabled {
   background-color: #808080;
 }
 
-#pricing {
-  text-align: center;
-}
-
-@media screen and (min-width: 350px) {
-  #seatlevel {
+@media screen and (min-width: 300px) {
+  #seat-quantity {
     width: 50%;
   }
 
