@@ -4,7 +4,7 @@
   <title>Ticket Purchase</title>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1.0,shrink-to-fit=no" />
-  <link rel="stylesheet" href="../assets/css/screen.css" />
+  <link rel="stylesheet" href="assets/css/screen.css" />
 </head>
 <body>
   <header id="header">
@@ -12,10 +12,10 @@
   </header>
 
   <nav>
-    <ul>
+    <ul class="navigation">
       <li><a class="active" href="#home">Home</a></li>
-      <li><a href="../seating/index.html">Seating</a></li>
-      <li><a href="#checkout.html">Check-out</a></li>
+      <li><a href="#seating">Seating</a></li>
+      <li><a href="#checkout">Check-out</a></li>
       <li><a href="#confirmation">Confirmation</a></li>
     </ul>
   </nav>
@@ -26,37 +26,39 @@
     <ul class="grid-area">
       <li class="event-container">
         <a href="seating/index.html">
-        <img class="event" src="../assets/img/barcelonaStadium.jpg" alt="FC Barcelona stadium."/>
-        <p>This is fc barca</p>
+        <img id="event1" class="event" src="assets/img/barcelonaStadium.jpg" alt="FC Barcelona stadium."/>
+        <figcaption> Ticket Price starting at</figcaption>
+         <p id="ticket-price1">$100</p>
         </a>
       </li>
       <li class="event-container">
         <a href="seating/index.html">
-        <img class="event" src="../assets/img/cubStadium.jpg" alt="FC Barcelona stadium.">
-        <figcaption> Ticket Price starting at $50</figcaption>
+        <img id="event2" class="event" src="assets/img/cubStadium.jpg" alt="FC Barcelona stadium.">
+        <figcaption> Ticket Price starting at <p id="ticket-price2">$80</p></figcaption>
         </a>
       </li>
       <li class="event-container">
         <a href="seating/index.html">
-        <img class="event" src="../assets/img/whitesoxStadium.jpg" alt="FC Barcelona stadium.">
-        <figcaption> Ticket Price starting at $5</figcaption>
+        <img id="event3" class="event" src="assets/img/whitesoxStadium.jpg" alt="White Sox Stadium.">
+        <figcaption> Ticket Price starting at <p id="ticket-price3">$10</p></figcaption>
         </a>
       </li>
       <li class="event-container">
         <a href="seating/index.html">
-        <img class="event" src="../assets/img/bullsStadium.jpg" alt="FC Barcelona stadium.">
-        <figcaption> Ticket Price starting at $15</figcaption>
+        <img id="event4" class="event" src="assets/img/bullsStadium.jpg" alt="Bulls Stadium.">
+        <figcaption> Ticket Price starting at <p id="ticket-price4">$15</p></figcaption>
         </a>
       </li>
       <li class="event-container">
         <a href="seating/index.html">
-        <img class="event" src="../assets/img/bearsStadium.png" alt="FC Barcelona stadium.">
-        <figcaption> Ticket Price starting at $50</figcaption>
+        <img id="event5" class="event" src="assets/img/bearsStadium.png" alt="Bears Stadium.">
+        <figcaption> Ticket Price starting at <p id="ticket-price5">$60</p></figcaption>
         </a>
       </li>
       <li class="event-container">
         <a href="seating/index.html">
-        <img class="event"  src="../assets/img/blackhawkStadium.jpg" alt="FC Barcelona stadium.">
+        <img id="event6" class="event"  src="assets/img/blackhawkStadium.jpg" alt="Black Hawks Stadium">
+        <figcaption> Ticket price starting at <p id="ticket-price6">$25</p> </figcaption>
         </a>
       </li>
     </ul>
@@ -69,6 +71,6 @@
       <li>Help</li>
     </ul>
   </footer>
-<script src="../assets/js/site.js"></script>
+<script src="assets/js/site.js"></script>
 </body>
 </html>

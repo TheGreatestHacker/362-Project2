@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" id="confirmation">
 <head>
   <title>Ticket Purchase</title>
   <meta charset="utf-8" />
@@ -12,10 +12,10 @@
   </header>
 
   <nav>
-    <ul>
-      <li><a href="index.html">Home</a></li>
-      <li><a href="../seating/index.html">Seating</a></li>
-      <li><a href="../checkout/checkout.html">Check-out</a></li>
+    <ul class="navigation">
+      <li><a class="completed" href="../index.html">Home</a></li>
+      <li><a class="completed" href="../seating/index.html">Seating</a></li>
+      <li><a class="completed" href="../checkout/checkout.html">Check-out</a></li>
       <li><a class="active">Confirmation</a></li>
     </ul>
   </nav>
@@ -23,25 +23,35 @@
     <section id="reciept">
       <h2>Thank you for your purchase!</h2>
       <ul>
-        <li>Date:</li>
-        <p id="cdate"></p>
-        <li>First Name:</li>
-        <p id="cfname"></p>
-        <li>Last Name:</li>
-        <p id="clname"></p>
-        <li>Email Registered:</li>
-        <p id="cemail"></p>
-        <li>Confirmation Number:</li>
-        <p id="confirmation-number"></p>
-        <li>Amount of Tickets:</li>
-        <p id="cticket-amount"></p>
-        <li>Total:</li>
-        <p id="ctotal"></p>
+        <li>
+          <p id="cdate"></p>
+        </li>
+        <li>
+          <p id="confirmation-number"></p>
+        </li>
+        <li>
+          <p id="cfname"></p>
+        </li>
+        <li>
+          <p id="clname"></p>
+        </li>
+        <li>
+          <p id="cemail"></p>
+        </li>
+        <li>
+          <p id="cticket-price"></p>
+        </li>
+        <li>
+          <p id="cticket-amount"></p>
+        </li>
+        <li>
+          <p id="ctotal"></p>
+        </li>
       </ul>
     </section>
 </main>
   <footer id="footer">
   </footer>
-<script src="../assets/js/confirmation.js"></script>
+<script src="../assets/js/site.js"></script>
 </body>
 </html>

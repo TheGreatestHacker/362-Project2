@@ -23,6 +23,7 @@ h1 {
 h2 {
   font-size: 1.618em; /*29.124/18= 1.618em*/
   line-height: 1.5107814em; /*44/29.124=1.5107814*/;
+  padding-bottom:
 }
 
 input[type="text"], [type="email"] {
@@ -72,7 +73,7 @@ input, label, select {
 }
 
 /* Navigation Bar CSS*/
-nav > ul {
+.navigation {
   display: flex;
   list-style-type: none;
   margin: 0;
@@ -81,7 +82,7 @@ nav > ul {
   background-color: #333;
 }
 
-li {
+.navigation li {
   float: left;
   flex-grow: 1;
 }
@@ -104,7 +105,7 @@ li a:hover {
 /*-----------------Home Page Styling (index)---------------*/
 .grid-area {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(16.666667em, 1fr));
   grid-gap: 1.5rem;
   margin: 1em 5vw 1em 5vw; /*top left bottom right*/
 }
@@ -131,6 +132,18 @@ li a:hover {
   text-align: center;
 }
 /*------------------End Home Page Styling-----------------*/
+
+/*------------Start confirmation Styling----------------------*/
+
+#reciept {
+  border-style: solid;
+  border-width: 0.1666666em; /* 3/18= 0.1666666em */
+  border-radius: 0.8333333em; /* 15/18= 0.8333333em */
+  border-color: #acacac;
+  text-align: left;
+  margin: 3em 15vw;
+  padding: 1em 0em 1em 8vw; /*t r b l */
+}
 
 #seating-grid{
   display: grid;
@@ -160,12 +173,21 @@ li a:hover {
 #pricing {
   grid-row: 4/5;
   grid-column:2/5;
+  text-align: center;
 }
 
 #seat-submit {
+  grid-row: 5/6;
+  grid-column: 2/5;
   font-weight: bold;
   border-radius: 0.2rem;
-  padding: 0.7em 3em 0.7em  3em;   //top, right, bottom left
+  padding: 0.7em 3em 0.7em  3em;  /* top, right, bottom left */
+}
+
+#submit {
+  font-weight: bold;
+  border-radius: 0.2em;
+  padding: 0.7em 3em 0.7em  3em;  /* top, right, bottom left */
 }
 
 #continue-form {
@@ -187,12 +209,8 @@ input[type="submit"]:disabled {
   background-color: #808080;
 }
 
-#pricing {
-  text-align: center;
-}
-
-@media screen and (min-width: 350px) {
-  #seatlevel {
+@media screen and (min-width: 300px) {
+  #seat-quantity {
     width: 50%;
   }
 
