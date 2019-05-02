@@ -149,6 +149,7 @@
       event1.addEventListener("click", function(){
         if(storageAvailable('localStorage')){
           checkout.price = document.querySelector('#ticket-price1').innerText;
+          checkout.event = 1;
           console.log("checkout.price is: " + checkout.price);
           localStorage.setItem("payment_info", JSON.stringify(checkout));
         } // end if statement to check for localStorage
@@ -156,6 +157,7 @@
       event2.addEventListener("click", function(){
         if(storageAvailable('localStorage')){
           checkout.price = document.querySelector('#ticket-price2').innerText;
+          checkout.event = 2;
           console.log("checkout.price is: " + checkout.price);
           localStorage.setItem("payment_info", JSON.stringify(checkout));
         } // end if statement to check for localStorage
@@ -163,6 +165,7 @@
       event3.addEventListener("click", function(){
         if(storageAvailable('localStorage')){
           checkout.price = document.querySelector('#ticket-price3').innerText;
+          checkout.event = 3;
           console.log("checkout.price is: " + checkout.price);
           localStorage.setItem("payment_info", JSON.stringify(checkout));
         } // end if statement to check for localStorage
@@ -170,6 +173,7 @@
       event4.addEventListener("click", function(){
         if(storageAvailable('localStorage')){
           checkout.price = document.querySelector('#ticket-price4').innerText;
+          checkout.event = 4;
           console.log("checkout.price is: " + checkout.price);
           localStorage.setItem("payment_info", JSON.stringify(checkout));
         } // end if statement to check for localStorage
@@ -177,6 +181,7 @@
       event5.addEventListener("click", function(){
         if(storageAvailable('localStorage')){
           checkout.price = document.querySelector('#ticket-price5').innerText;
+          checkout.event = 5;
           console.log("checkout.price is: " + checkout.price);
           localStorage.setItem("payment_info", JSON.stringify(checkout));
         } // end if statement to check for localStorage
@@ -184,6 +189,7 @@
       event6.addEventListener("click", function(){
         if(storageAvailable('localStorage')){
           checkout.price = document.querySelector('#ticket-price6').innerText;
+          checkout.event = 6;
           console.log("checkout.price is: " + checkout.price);
           localStorage.setItem("payment_info", JSON.stringify(checkout));
         } // end if statement to check for localStorage
@@ -197,6 +203,26 @@
         var checkout = JSON.parse(localStorage.getItem('payment_info'));
         localStorage.removeItem('payment_info')
       } // end if statement to check for localStorage
+
+      var seatingImg = document.querySelector("#seating-img");
+      if(checkout.event==1){
+        seatingImg.setAttribute('src', '../assets/img/barcelona-seating.jpg');
+      }
+      else if(checkout.event==2){
+        seatingImg.setAttribute('src', '../assets/img/cubs-seating.jpg');
+      }
+      else if(checkout.event==3){
+        seatingImg.setAttribute('src', '../assets/img/whitesox-seating.jpeg');
+      }
+      else if(checkout.event==4){
+        seatingImg.setAttribute('src', '../assets/img/bulls-seating.jpg');
+      }
+      else if(checkout.event==5){
+        seatingImg.setAttribute('src', '../assets/img/bears-seating.jpg');
+      }
+      else if(checkout.event==6){
+        seatingImg.setAttribute('src', '../assets/img/blackhawks-seating.jpg');
+      }
 
       console.log(checkout.price);
       document.getElementById("ticket-price").innerHTML = checkout.price;
