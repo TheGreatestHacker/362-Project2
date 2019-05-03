@@ -87,7 +87,7 @@ input, label, select {
   flex-grow: 1;
 }
 
-li a {
+.navigation li a {
   display: block;
   color: white;
   text-align: center;
@@ -95,8 +95,25 @@ li a {
   text-decoration: none;
 }
 
-li a:hover {
+.navigation li a:hover {
   background-color: #111;
+}
+
+.active {
+  animation-name: strobe;
+  animation-duration: 1.5s;
+  animation-iteration-count: infinite;
+}
+
+/* Standard syntax */
+@keyframes strobe {
+  0%   {background-color: #333;}
+  50%  {background-color: green;}
+  100% {background-color: #333;}
+}
+
+.completed {
+  background-color: green;
 }
 /*-----------End Navigation Styling--------------*/
 
@@ -111,24 +128,41 @@ li a:hover {
 }
 .grid-area > .eventContainer {
   background: #EDE7F6;
-  border-radius: 1rem;
 }
 
-/*
-#event1 {
-  background-image: url(/img/barcelonaStadium.jpg);
-  padding: 6em;
-}
-*/
 .event {
   object-fit: cover;
   width: 100%;
   height: 100%;
-  border-radius: 1rem;
+  border-radius: 0rem;
   object-position: center;
 }
 
-#upcoming-events {
+.event-background {
+    border: thin #c0c0c0 solid;
+    padding: 5px 0px 5px 0px;
+    background-color:#222;
+    border-radius: 1em;
+  	display: flex;
+  	flex-flow: column;
+    margin: auto;
+}
+
+img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+figcaption {
+    background-color: #222;
+    border-radius: 1em;
+    color: white;
+    font: italic smaller sans-serif;
+    padding: 3px;
+    text-align: center;
+}
+
+#upcoming-events{
   text-align: center;
 }
 /*------------------End Home Page Styling-----------------*/
