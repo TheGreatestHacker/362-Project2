@@ -23,7 +23,6 @@ h1 {
 h2 {
   font-size: 1.618em; /*29.124/18= 1.618em*/
   line-height: 1.5107814em; /*44/29.124=1.5107814*/
-  padding-bottom: ;
 }
 
 input[type="text"], [type="email"] {
@@ -91,7 +90,6 @@ input, label, select {
 
 .grid-area a {
   text-decoration: none;
-  font-size: ;
 }
 
 .navigation li a {
