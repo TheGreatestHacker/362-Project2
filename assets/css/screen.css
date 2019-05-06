@@ -3,7 +3,7 @@
    License: none (public domain)
 */
 /* stylelint-disable*/
-a,abbr,acronym,address,applet,article,aside,audio,b,big,blockquote,body,canvas,caption,center,cite,code,dd,del,details,dfn,div,dl,dt,em,embed,fieldset,figcaption,figure,footer,form,h1,h2,h3,h4,h5,h6,header,hgroup,html,i,iframe,img,ins,kbd,label,legend,li,mark,menu,nav,object,ol,output,p,pre,q,ruby,s,samp,section,small,span,strike,strong,sub,summary,sup,table,tbody,td,tfoot,th,thead,time,tr,tt,u,ul,var,video{margin:0;padding:0;border:0;font:inherit;vertical-align:baseline}article,aside,details,figcaption,figure,footer,header,hgroup,main,menu,nav,section{display:block}html{line-height:1}body{line-height:inherit}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:after,blockquote:before,q:after,q:before{content:'';content:none}table{border-collapse:collapse;border-spacing:0}
+a, abbr, acronym, address, applet, article, aside, audio, b, big, blockquote, body, canvas, caption, center, cite, code, dd, del, details, dfn, div, dl, dt, em, embed, fieldset, figcaption, figure, footer, form, h1, h2, h3, h4, h5, h6, header, hgroup, html, i, iframe, img, ins, kbd, label, legend, li, mark, menu, nav, object, ol, output, p, pre, q, ruby, s, samp, section, small, span, strike, strong, sub, summary, sup, table, tbody, td, tfoot, th, thead, time, tr, tt, u, ul, var, video { margin: 0;padding: 0;border: 0;font: inherit;vertical-align: baseline; }article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section { display: block; }html { line-height: 1; }body { line-height: inherit; }ol, ul { list-style: none; }blockquote, q { quotes: none; }blockquote:after, blockquote:before, q:after, q:before { content: "";content: none; }table { border-collapse: collapse;border-spacing: 0; }
 /* stylelint-enable */
 
 /* Begin site styles below */
@@ -22,8 +22,7 @@ h1 {
 
 h2 {
   font-size: 1.618em; /*29.124/18= 1.618em*/
-  line-height: 1.5107814em; /*44/29.124=1.5107814*/;
-  padding-bottom:
+  line-height: 1.5107814em; /*44/29.124=1.5107814*/
 }
 
 input[type="text"], [type="email"] {
@@ -89,6 +88,10 @@ input, label, select {
   flex-grow: 1;
 }
 
+.grid-area a {
+  text-decoration: none;
+}
+
 .navigation li a {
   display: block;
   color: white;
@@ -109,9 +112,9 @@ input, label, select {
 
 /* Standard syntax */
 @keyframes strobe {
-  0%   {background-color: #333;}
-  50%  {background-color: green;}
-  100% {background-color: #333;}
+  0% { background-color: #333; }
+  50% { background-color: green; }
+  100% { background-color: #333; }
 }
 
 .completed {
@@ -132,44 +135,39 @@ input, label, select {
   background: #EDE7F6;
 }
 
-.grid-area a {
-  text-decoration: none;
-  font-size: ;
-}
-
 .event {
   object-fit: cover;
   width: 100%;
   height: 100%;
-  border-radius: 0rem;
+  border-radius: 0;
   object-position: center;
 }
 
 .event-background {
-    border: thin #c0c0c0 solid;
-    padding: 5px 0px 5px 0px;
-    background-color:#222;
-    border-radius: 1em;
-  	display: flex;
-  	flex-flow: column;
-    margin: auto;
+  border: thin #c0c0c0 solid;
+  padding: 0.27777778em 0 0.27777778em 0;  /* 5/18= 0.27777778em */
+  background-color: #222;
+  border-radius: 1em;
+  display: flex;
+  flex-flow: column;
+  margin: auto;
 }
 
 img {
-    max-width: 100%;
-    max-height: 100%;
+  max-width: 100%;
+  max-height: 100%;
 }
 
 figcaption {
-    background-color: #222;
-    border-radius: 1em;
-    color: white;
-    font: italic smaller sans-serif;
-    padding: 3px;
-    text-align: center;
+  background-color: #222;
+  border-radius: 1em;
+  color: white;
+  font: italic smaller sans-serif;
+  padding: 0.1666667em;  /* 3/18= 0.1666666em */
+  text-align: center;
 }
 
-#upcoming-events{
+#upcoming-events {
   text-align: center;
 }
 /*------------------End Home Page Styling-----------------*/
@@ -183,16 +181,16 @@ figcaption {
   border-color: #acacac;
   text-align: left;
   margin: 3em 15vw;
-  padding: 1em 0em 1em 8vw; /*t r b l */
+  padding: 1em 0 1em 8vw; /*t r b l */
 }
 
-#seating-grid{
+#seating-grid {
   display: grid;
   grid-template-columns: 1fr 30% 20% 30% 1fr;
   grid-template-rows: 1fr 25% 25% 25% 1fr;
 }
 
-#seating-info{
+#seating-info {
   grid-row: 2/3;
   grid-column: 2/5;
 }
@@ -213,7 +211,7 @@ figcaption {
 
 #pricing {
   grid-row: 4/5;
-  grid-column:2/5;
+  grid-column: 2/5;
   text-align: center;
 }
 
@@ -222,13 +220,13 @@ figcaption {
   grid-column: 2/5;
   font-weight: bold;
   border-radius: 0.2rem;
-  padding: 0.7em 3em 0.7em  3em;  /* top, right, bottom left */
+  padding: 0.7em 3em 0.7em  3em;   /*top, right, bottom left */
 }
 
 #submit {
   font-weight: bold;
   border-radius: 0.2em;
-  padding: 0.7em 3em 0.7em  3em;  /* top, right, bottom left */
+  padding: 0.7em 3em 0.7em  3em;   /*top, right, bottom left */
 }
 
 #continue-form {
@@ -256,15 +254,15 @@ input[type="submit"]:disabled {
   }
 
   #sectionlevel {
-    width: 50%;
-    }
+    max-width: 50%;
+  }
 }
 
 @media screen and (min-width: 1000px) {
   #seating-grid {
     padding-right: 3em;
     padding-left: 3em;
-    }
+  }
 
   .grid-area {
     grid-template-columns: repeat(auto-fill, minmax(22.2222em, 1fr)); /*400px/18 = 22.2222em*/
@@ -274,7 +272,8 @@ input[type="submit"]:disabled {
 
 
 footer {
+  font-size: 0.702em;
   text-align: center;
   overflow: hidden;
-  padding:1em 0em 1em 0em;
+  padding: 1em 0 1em 0;
 }

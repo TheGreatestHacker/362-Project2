@@ -95,29 +95,15 @@
     return validate(zip.length, eq, 5);
   }
 
-  // Debounce function to limit calls on repeated events
-  // See for e.g., https://codeburst.io/throttling-and-debouncing-in-javascript-b01cad5c8edf
-  var debounce = function debounce(func, delay) {
-    var inDebounce;
-    return function () {
-      var context = this;
-      var args = arguments;
-      clearTimeout(inDebounce);
-      inDebounce = setTimeout(function () {
-        return func.apply(context, args);
-      }, delay);
-    };
-  };
-
-  function confirmationTicket(num,size) {
+  function confirmationTicket() {
   // var number=Math.random()*10;
-  var number=Math.floor(Math.random()*100000);
-  var length=8;
-  var str = '' + number;
-  while (str.length < length) {
-  str = '0' + str;
-  }
-  return str;
+    var number=Math.floor(Math.random()*100000);
+    var length=8;
+    var str = '' + number;
+    while (str.length < length) {
+      str = '0' + str;
+    }
+    return str;
   }
 
   function time(){
@@ -134,15 +120,15 @@
   var page3 = document.querySelector('#check-out');
   var page4 = document.querySelector('#confirmation');
 
-  if (page1 !== null && page1.id == 'home') {
+  if (page1 !== null && page1.id === 'home') {
     console.log("Home page was found");
     document.addEventListener('DOMContentLoaded', function(){
-      var event1 = document.querySelector('#event1')
-      var event2 = document.querySelector('#event2')
-      var event3 = document.querySelector('#event3')
-      var event4 = document.querySelector('#event4')
-      var event5 = document.querySelector('#event5')
-      var event6 = document.querySelector('#event6')
+      var event1 = document.querySelector('#event1');
+      var event2 = document.querySelector('#event2');
+      var event3 = document.querySelector('#event3');
+      var event4 = document.querySelector('#event4');
+      var event5 = document.querySelector('#event5');
+      var event6 = document.querySelector('#event6');
 
       var checkout = {};
 
@@ -196,52 +182,52 @@
       });
     });  // End of DOMContentLoaded
   }
-  else if (page2 !== null && page2.id == 'seating') {
+  else if (page2 !== null && page2.id === 'seating') {
     console.log("Seating page was found");
     document.addEventListener('DOMContentLoaded', function(){
       if(storageAvailable('localStorage')){
         var checkout = JSON.parse(localStorage.getItem('payment_info'));
-        localStorage.removeItem('payment_info')
+        localStorage.removeItem('payment_info');
       } // end if statement to check for localStorage
 
       var seatingImg = document.querySelector("#seating-img");
-      if(checkout.event==1){
+      if(checkout.event===1){
         seatingImg.setAttribute('src', '../assets/img/barcelona-seating.jpg');
       }
-      else if(checkout.event==2){
+      else if(checkout.event===2){
         seatingImg.setAttribute('src', '../assets/img/cubs-seating.jpg');
       }
-      else if(checkout.event==3){
+      else if(checkout.event===3){
         seatingImg.setAttribute('src', '../assets/img/whitesox-seating.jpeg');
       }
-      else if(checkout.event==4){
+      else if(checkout.event===4){
         seatingImg.setAttribute('src', '../assets/img/bulls-seating.jpg');
       }
-      else if(checkout.event==5){
+      else if(checkout.event===5){
         seatingImg.setAttribute('src', '../assets/img/bears-seating.jpg');
       }
-      else if(checkout.event==6){
+      else if(checkout.event===6){
         seatingImg.setAttribute('src', '../assets/img/blackhawks-seating.jpg');
       }
 
       console.log(checkout.price);
       document.getElementById("ticket-price").innerHTML = checkout.price;
 
-      var section = document.querySelector('#sectionlevel')
+      var section = document.querySelector('#sectionlevel');
       section.addEventListener("change", function(){
         var ticketTotal = Number(section.value) * Number(clean_nonnumber(checkout.price));
         checkout.ticketTotal = ticketTotal;
         document.getElementById("ticket-price").innerHTML = "$" + ticketTotal;
       });
 
-      var quantity = document.querySelector('#seat-quantity')
+      var quantity = document.querySelector('#seat-quantity');
       quantity.addEventListener("change", function(){
-        checkout.ticketNum = Number(quantity.value)
+        checkout.ticketNum = Number(quantity.value);
         checkout.total = checkout.ticketNum * checkout.ticketTotal;
         document.getElementById("total").innerHTML = "$" + checkout.total;
       });
 
-      var seatSubmit = document.querySelector('#seat-submit')
+      var seatSubmit = document.querySelector('#seat-submit');
       seatSubmit.addEventListener("click", function(){
         if(storageAvailable('localStorage')){
           localStorage.setItem("payment_info2", JSON.stringify(checkout));
@@ -249,7 +235,7 @@
       });
     });  // End of DOMContentLoaded
   }
-  else if (page3 !== null && page3.id == 'check-out' ) {
+  else if (page3 !== null && page3.id === 'check-out' ) {
     console.log("Checkout page was found");
     document.addEventListener('DOMContentLoaded', function(){
       var signup_form = document.querySelector('#payment');
@@ -257,7 +243,7 @@
 
       if(storageAvailable('localStorage')){
         var checkout = JSON.parse(localStorage.getItem('payment_info2'));
-        localStorage.removeItem('payment_info2')
+        localStorage.removeItem('payment_info2');
       }
 
       // listen for keyup event anywhere in the form
@@ -336,7 +322,7 @@
       }// end of fetch
     });  // End of DOMContentLoaded
   }
-  else if (page4 !== null && page4.id == 'confirmation') {
+  else if (page4 !== null && page4.id === 'confirmation') {
     console.log("Confirmation page was found");
     document.addEventListener('DOMContentLoaded', function(){
       var checkout = JSON.parse(localStorage.getItem('payment_info3'));
