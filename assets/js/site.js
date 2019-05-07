@@ -337,6 +337,12 @@
       document.getElementById("cticket-price").innerHTML = 'Ticket Price: $' + checkout.ticketTotal;
       document.getElementById("ctotal").innerHTML = 'Total: $' + checkout.total;
 
+      var button = document.querySelector("#submit");
+      button.addEventListener("click", function(){
+        localStorage.removeItem('payment_info')
+        window.location = "/index.html";
+      });
+
     });  // End of DOMContentLoaded
   }
   else {
