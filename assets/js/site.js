@@ -340,7 +340,7 @@
       var button = document.querySelector("#submit");
       button.addEventListener("click", function(){
         localStorage.removeItem('payment_info')
-        window.location = "/index.html";
+        // window.location = "/index.html";
       });
 
     });  // End of DOMContentLoaded

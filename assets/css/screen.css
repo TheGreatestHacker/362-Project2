@@ -244,6 +244,11 @@ figcaption {
   padding: 0.7em 3em 0.7em  3em;   /*top, right, bottom left */
 }
 
+#submit > a {
+  text-decoration: none;
+  color: inherit;
+}
+
 #continue-form {
   text-align: center;
 }
