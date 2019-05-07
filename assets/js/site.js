@@ -349,5 +349,10 @@
     console.log('No page found!');
   }
 
+  var button = document.querySelector('#print');
+  button.addEventListener("click", function (){
+    window.print();
+  });
+
 
 }());  // End of IIFE
