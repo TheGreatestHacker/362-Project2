@@ -187,7 +187,7 @@
     document.addEventListener('DOMContentLoaded', function(){
       if(storageAvailable('localStorage')){
         var checkout = JSON.parse(localStorage.getItem('payment_info'));
-        localStorage.removeItem('payment_info');
+        // localStorage.removeItem('payment_info');
       } // end if statement to check for localStorage
 
       var seatingImg = document.querySelector("#seating-img");
@@ -230,7 +230,7 @@
       var seatSubmit = document.querySelector('#seat-submit');
       seatSubmit.addEventListener("click", function(){
         if(storageAvailable('localStorage')){
-          localStorage.setItem("payment_info2", JSON.stringify(checkout));
+          localStorage.setItem("payment_info", JSON.stringify(checkout));
         } // end if statement to check for localStorage
       });
     });  // End of DOMContentLoaded
@@ -242,8 +242,8 @@
       var signup_submit=document.querySelector('#submit');// submit button
 
       if(storageAvailable('localStorage')){
-        var checkout = JSON.parse(localStorage.getItem('payment_info2'));
-        localStorage.removeItem('payment_info2');
+        var checkout = JSON.parse(localStorage.getItem('payment_info'));
+        // localStorage.removeItem('payment_info');
       }
 
       // listen for keyup event anywhere in the form
@@ -274,7 +274,7 @@
 
         if(storageAvailable('localStorage')){
           signup_form.addEventListener('submit', function(){
-            localStorage.setItem("payment_info3", JSON.stringify(checkout));
+            localStorage.setItem("payment_info", JSON.stringify(checkout));
             console.log("Form submitted and data stored");
           }); // end blog.form event listener
         } // end if statement to check for localStorage
@@ -296,7 +296,7 @@
         var zip;
         location.zip.addEventListener('keyup', function() {
           if (validate_zip(location.zip.value) && zip !== location.zip.value){
-            zip = location.zip.value;
+            var zip = location.zip.value;
             fetch('http://api.zippopotam.us/us/' + location.zip.value)
               .then(function(response) {
                 if (response.ok){
@@ -325,7 +325,7 @@
   else if (page4 !== null && page4.id === 'confirmation') {
     console.log("Confirmation page was found");
     document.addEventListener('DOMContentLoaded', function(){
-      var checkout = JSON.parse(localStorage.getItem('payment_info3'));
+      var checkout = JSON.parse(localStorage.getItem('payment_info'));
       console.log(checkout.fname);
 
       document.getElementById("cdate").innerHTML = 'Time: '+ time();
@@ -336,6 +336,12 @@
       document.getElementById("cticket-amount").innerHTML = 'Amount of Tickets: ' + checkout.ticketNum;
       document.getElementById("cticket-price").innerHTML = 'Ticket Price: $' + checkout.ticketTotal;
       document.getElementById("ctotal").innerHTML = 'Total: $' + checkout.total;
+
+      var button = document.querySelector("#submit");
+      button.addEventListener("click", function(){
+        localStorage.removeItem('payment_info')
+        window.location = "/index.html";
+      });
 
     });  // End of DOMContentLoaded
   }

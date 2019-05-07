@@ -34,6 +34,21 @@ header {
   background-image: linear-gradient( 35deg, #004346 0%,#58ecaf 20%,#7fffd4 50%, #58ecaf 80%, #004346 100%);
 }
 
+button {
+  font-weight: bold;
+  border-radius: 0.2em;
+  padding: 0.7em 3em 0.7em  3em;   /*top, right, bottom left */
+  background-color: #7fffd4;
+  margin-bottom: 1em;
+}
+
+button:hover {
+  background-color: #75d5b5;
+}
+
+.center {
+  text-align: center;
+}
 
 /*----------- Section Styling for checkout page----------*/
 #payment > section {
@@ -241,7 +256,6 @@ figcaption {
 
 input[type="submit"] {
   background-color: #7fffd4;
-
 }
 
 input[type="submit"]:disabled {
@@ -266,6 +280,10 @@ input[type="submit"]:disabled {
 
   .grid-area {
     grid-template-columns: repeat(auto-fill, minmax(22.2222em, 1fr)); /*400px/18 = 22.2222em*/
+  }
+
+  #payment > section {
+    margin: 1em 25vw 1em 25vw; /*top left bottom right*/
   }
 
 }
